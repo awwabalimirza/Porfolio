@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Awwab's Portfolio</title>
     
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
     <style>
         /* --- FONT SETUP --- */
         @font-face {
@@ -37,7 +39,7 @@
             cursor: url('cursor.cur'), auto; 
         }
 
-        /* --- VIDEO BACKGROUND SETUP --- */
+        /* --- VIDEO BACKGROUND --- */
         #bg-video {
             position: fixed;
             right: 0;
@@ -103,7 +105,7 @@
             margin-top: 5px;
         }
 
-        /* --- NAVIGATION --- */
+        /* --- NAVIGATION (UPDATED ALIGNMENT) --- */
         nav {
             display: flex;
             gap: 15px;
@@ -125,14 +127,27 @@
             background-color: rgba(120, 120, 120, 0.8); 
             border: 2px solid;
             border-color: #fff #222 #222 #fff;
-            padding: 10px 30px;
+            padding: 10px 20px; /* Adjusted padding */
             color: white;
             text-decoration: none;
             font-size: 1.5rem;
             text-shadow: 2px 2px #222;
             width: 180px;
-            text-align: center;
             transition: background 0.1s;
+            
+            /* FLEXBOX FOR PERFECT ALIGNMENT */
+            display: inline-flex;       
+            align-items: center;        /* Vertically centers items */
+            justify-content: center;    /* Horizontally centers items */
+            gap: 10px;                  /* Space between Icon and Text */
+            line-height: 1;             /* Prevents text from pushing down */
+        }
+
+        /* Nav Icons Styling */
+        .mc-btn i {
+            color: var(--neon-cyan);
+            font-size: 1.6rem; /* Slightly larger for visibility */
+            display: block;    /* Ensures icon behaves correctly in flex */
         }
 
         .mc-btn:hover {
@@ -168,6 +183,7 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
         }
 
+        /* Section Headings Alignment */
         h2.section-title {
             color: #aaaaaa;
             font-size: 2rem;
@@ -175,6 +191,16 @@
             padding-bottom: 10px;
             margin-top: 0;
             text-transform: uppercase;
+            
+            /* Flex for Header Icons */
+            display: flex;
+            align-items: center; 
+            gap: 15px;
+        }
+        
+        h2.section-title i {
+            color: var(--neon-cyan);
+            font-size: 2.2rem; /* Larger icons for headers */
         }
 
         .bio-text {
@@ -186,156 +212,33 @@
         }
 
         /* --- SKILLS LIST --- */
-        .skill-list {
-            list-style: none; 
-            padding: 0; 
-            font-size: 1.4rem;
-        }
-        .skill-item {
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-        }
+        .skill-list { list-style: none; padding: 0; font-size: 1.4rem; }
+        .skill-item { margin-bottom: 10px; display: flex; justify-content: space-between; }
 
-        /* --- PROJECTS SECTION --- */
-        .projects-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: space-between;
-        }
+        /* --- PROJECTS --- */
+        .projects-wrapper { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; }
+        .game-card { background-color: rgba(0, 0, 0, 0.5); border: 2px solid #333; border-radius: 15px; width: 48%; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; transition: transform 0.2s, border-color 0.2s; }
+        .game-card:hover { transform: translateY(-5px); border-color: var(--neon-cyan); }
+        .card-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 2px solid #333; }
+        .card-content { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-title { color: var(--neon-cyan); font-size: 1.5rem; margin: 0 0 10px 0; }
+        .card-desc { color: #e0e0e0; font-size: 1rem; line-height: 1.4; margin-bottom: 20px; flex-grow: 1; }
+        .access-btn { display: block; width: 100%; padding: 12px; text-align: center; border: 2px solid var(--neon-cyan); color: var(--neon-cyan); text-decoration: none; border-radius: 8px; font-size: 1.1rem; background: transparent; transition: all 0.2s; }
+        .access-btn:hover { background: rgba(0, 255, 255, 0.2); box-shadow: 0 0 10px var(--neon-cyan); }
 
-        .game-card {
-            background-color: rgba(0, 0, 0, 0.5); 
-            border: 2px solid #333;
-            border-radius: 15px; 
-            width: 48%; 
-            min-width: 300px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            transition: transform 0.2s, border-color 0.2s;
-        }
+        /* --- FORM --- */
+        .mc-input { width: 100%; background: rgba(0, 0, 0, 0.5); border: 2px solid #555; color: white; padding: 15px; font-size: 1.2rem; font-family: 'Minecraft', monospace; outline: none; margin-bottom: 15px; transition: border-color 0.2s; }
+        .mc-input:focus { border-color: #5cbd34; }
+        .mc-input::placeholder { color: #888; }
 
-        .game-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--neon-cyan);
-        }
+        /* --- SOCIAL --- */
+        .social-links { display: flex; gap: 20px; justify-content: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .social-btn { width: 50px; height: 50px; border: 2px solid #5cbd34; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); transition: all 0.3s ease; }
+        .social-btn svg { width: 28px; height: 28px; fill: #ffff55; transition: all 0.3s ease; }
+        .social-btn:hover { background-color: #5cbd34; box-shadow: 0 0 15px #5cbd34; transform: scale(1.1); }
+        .social-btn:hover svg { fill: white; }
 
-        .card-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 2px solid #333;
-        }
-
-        .card-content {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .card-title {
-            color: var(--neon-cyan);
-            font-size: 1.5rem;
-            margin: 0 0 10px 0;
-        }
-
-        .card-desc {
-            color: #e0e0e0;
-            font-size: 1rem;
-            line-height: 1.4;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .access-btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            text-align: center;
-            border: 2px solid var(--neon-cyan);
-            color: var(--neon-cyan);
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            background: transparent;
-            transition: all 0.2s;
-        }
-
-        .access-btn:hover {
-            background: rgba(0, 255, 255, 0.2);
-            box-shadow: 0 0 10px var(--neon-cyan);
-        }
-
-        /* --- CONTACT FORM STYLES --- */
-        .mc-input {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            border: 2px solid #555;
-            color: white;
-            padding: 15px;
-            font-size: 1.2rem;
-            font-family: 'Minecraft', monospace;
-            outline: none;
-            margin-bottom: 15px;
-            transition: border-color 0.2s;
-        }
-
-        .mc-input:focus {
-            border-color: #5cbd34; /* Highlights green when typing */
-        }
-
-        .mc-input::placeholder {
-            color: #888;
-        }
-
-        /* --- SOCIAL ICONS --- */
-        .social-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .social-btn {
-            width: 50px;
-            height: 50px;
-            border: 2px solid #5cbd34;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0,0,0,0.5);
-            transition: all 0.3s ease;
-        }
-
-        .social-btn svg {
-            width: 28px;
-            height: 28px;
-            fill: #ffff55;
-            transition: all 0.3s ease;
-        }
-
-        .social-btn:hover {
-            background-color: #5cbd34;
-            box-shadow: 0 0 15px #5cbd34;
-            transform: scale(1.1);
-        }
-
-        .social-btn:hover svg {
-            fill: white;
-        }
-
-        footer {
-            margin-bottom: 20px;
-            color: #ccc; 
-            font-size: 1rem;
-            text-shadow: 1px 1px 2px black;
-        }
+        footer { margin-bottom: 20px; color: #ccc; font-size: 1rem; text-shadow: 1px 1px 2px black; }
     </style>
 </head>
 <body>
@@ -354,16 +257,16 @@
     </header>
 
     <nav>
-        <a href="#" class="mc-btn">HOME</a> 
-        <a href="#home" class="mc-btn">ABOUT</a>
-        <a href="#skills" class="mc-btn">SKILLS</a>
-        <a href="#projects" class="mc-btn">PROJECTS</a>
-        <a href="#goals" class="mc-btn">GOALS</a>
-        <a href="#contact" class="mc-btn">CONTACT</a>
+        <a href="#" class="mc-btn"><i class='bx bx-home'></i> HOME</a> 
+        <a href="#home" class="mc-btn"><i class='bx bx-user'></i> ABOUT</a>
+        <a href="#skills" class="mc-btn"><i class='bx bx-chip'></i> SKILLS</a>
+        <a href="#projects" class="mc-btn"><i class='bx bx-folder'></i> PROJECTS</a>
+        <a href="#goals" class="mc-btn"><i class='bx bx-target-lock'></i> GOALS</a>
+        <a href="#contact" class="mc-btn"><i class='bx bx-paper-plane'></i> CONTACT</a>
     </nav>
 
     <div class="container" id="home">
-        <h2 class="section-title">ABOUT ME</h2>
+        <h2 class="section-title"><i class='bx bx-user'></i> ABOUT ME</h2>
         <p class="bio-text" id="typewriter-text"></p>
         
         <div class="social-links">
@@ -380,49 +283,31 @@
     </div>
 
     <div class="container" id="skills">
-        <h2 class="section-title">SKILLS AND CAPABILITIES</h2>
+        <h2 class="section-title"><i class='bx bx-chip'></i> SKILLS AND CAPABILITIES</h2>
         <ul class="skill-list">
-            <li class="skill-item">
-                <span style="color: #5cbd34;">HTML & CSS</span> 
-                <span style="color: #ffff55;">Level 64</span>
-            </li>
-            <li class="skill-item">
-                <span style="color: #5cbd34;">Creative Developer/Designer</span> 
-                <span style="color: #ffff55;">Level 45</span>
-            </li>
-            <li class="skill-item">
-                <span style="color: #5cbd34;">C++</span> 
-                <span style="color: #ffff55;">Level 30</span>
-            </li>
-            <li class="skill-item">
-                <span style="color: #5cbd34;">Pressure Handler</span> 
-                <span style="color: #ffff55;">Level 99</span>
-            </li>
+            <li class="skill-item"><span style="color: #5cbd34;">HTML & CSS</span> <span style="color: #ffff55;">Level 64</span></li>
+            <li class="skill-item"><span style="color: #5cbd34;">Creative Developer/Designer</span> <span style="color: #ffff55;">Level 45</span></li>
+            <li class="skill-item"><span style="color: #5cbd34;">C++</span> <span style="color: #ffff55;">Level 30</span></li>
+            <li class="skill-item"><span style="color: #5cbd34;">Pressure Handler</span> <span style="color: #ffff55;">Level 99</span></li>
         </ul>
     </div>
 
     <div class="container" id="projects">
-        <h2 class="section-title">PROJECTS</h2>
-        
+        <h2 class="section-title"><i class='bx bx-folder'></i> PROJECTS</h2>
         <div class="projects-wrapper">
             <div class="game-card">
                 <img src="2.png" alt="Tumble Pop" class="card-img">
                 <div class="card-content">
                     <h3 class="card-title">A COMMUNITY WEBSITE </h3>
-                    <p class="card-desc">
-                        A website created to bring together enthusiasts from various fields to share knowledge, collaborate on projects, and foster a sense of community.
-                    </p>
+                    <p class="card-desc">A website created to bring together enthusiasts from various fields to share knowledge, collaborate on projects, and foster a sense of community.</p>
                     <a href="https://communitynews.vercel.app/" class="access-btn">ACCESS DATA</a>
                 </div>
             </div>
-
             <div class="game-card">
                 <img src="9.jpg" alt="Brick Breaker" class="card-img">
                 <div class="card-content">
                     <h3 class="card-title">COMING SOON</h3>
-                    <p class="card-desc">
-                        
-                    </p>
+                    <p class="card-desc"></p>
                     <a href="#" class="access-btn">ACCESS DATA</a>
                 </div>
             </div>
@@ -430,7 +315,7 @@
     </div>
 
     <div class="container" id="goals">
-        <h2 class="section-title">GOALS</h2>
+        <h2 class="section-title"><i class='bx bx-target-lock'></i> GOALS</h2>
         <p style="font-size: 1.2rem; color: #ccc;">
             > 2025-2029 BECOME A LEADING AI ENGINEER IN THE INDUSTRY.<br><br>
             > CONTRIBUTE TO  AI RESEARCH AND DEVELOPMENT.<br><br>
@@ -441,13 +326,12 @@
     </div>
 
     <div class="container" id="contact">
-        <h2 class="section-title">CONTACT</h2>
+        <h2 class="section-title"><i class='bx bx-paper-plane'></i> CONTACT</h2>
         
         <form id="contact-form" action="https://formspree.io/f/xnjjnwjo" method="POST">
             <input type="text" id="contact-name" name="name" class="mc-input" placeholder="Your Name" required>
             <input type="email" id="contact-email" name="email" class="mc-input" placeholder="Your Email" required>
             <textarea id="contact-message" name="message" class="mc-input" rows="5" placeholder="Type your message here..." required></textarea>
-            
             <button type="submit" class="mc-btn" style="width: 100%; margin-top: 10px;">Send Message</button>
         </form>
 
@@ -469,7 +353,6 @@
     </footer>
 
     <script>
-        // --- TYPEWRITER EFFECT LOGIC ---
         const aboutMeText = "I AM AN ASPIRING AI ENGINEER AND COMPUTER SCIENTIST CURRENTLY PURSUING MY BACHELOR'S AT THE NATIONAL UNIVERSITY OF COMPUTER AND EMERGING SCIENCES.<br><br>MY JOURNEY INTO TECH IS UNIQUE—I CAME FROM A BACKGROUND WITH ABSOLUTELY ZERO CODING EXPERIENCE. HOWEVER, DIVING INTO C++ COMPLETELY TRANSFORMED MY WORLDVIEW. I WENT FROM BEING A PASSIVE USER OF TECHNOLOGY TO AN ACTIVE CREATOR AND INNOVATOR.";
         
         const typeContainer = document.getElementById('typewriter-text');
@@ -492,7 +375,6 @@
             typeWriter();
         };
 
-        // --- CONTACT FORM AJAX LOGIC ---
         var form = document.getElementById("contact-form");
 
         async function handleSubmit(event) {
