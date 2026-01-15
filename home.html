@@ -1,59 +1,372 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Awwab's Portfolio</title>
+    
+    <style>
+        /* --- FONT SETUP --- */
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('Minecraft.ttf');
+        }
+
+        :root {
+            --mc-bg: #1e1e1f;
+            --mc-btn-face: #999999;
+            --mc-btn-shadow: #3b3b3b;
+            --mc-btn-light: #d9d9d9;
+            --mc-text-shadow: 2px 2px #000;
+            --mc-green: #5cbd34;
+            --mc-dirt: #3f2713;
+            --neon-cyan: #00ffff;
+        }
+
+        /* --- CURSOR SETUP --- */
+        * {
+            box-sizing: border-box;
+            font-family: 'Minecraft', monospace;
+            cursor: url('cursor.cur'), auto; 
+        }
+
+        /* --- VIDEO BACKGROUND SETUP --- */
+        #bg-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -2; /* Behind everything */
+            object-fit: cover;
+        }
+
+        /* Elegant Overlay to darken the video so text pops */
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* 60% Dark tint */
+            z-index: -1; /* Above video, behind content */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            /* Removed the old CSS pattern background */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- HEADER --- */
+        header {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 5rem;
+            margin: 0;
+            color: #dcdcdc;
+            text-shadow: 4px 4px 0px #3f3f3f;
+            letter-spacing: 2px;
+        }
+        
+        h2.subtitle {
+            font-size: 2rem;
+            color: #aaaaaa;
+            margin-top: 5px;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .mc-btn {
+            background-color: rgba(120, 120, 120, 0.8); /* Slight opacity for elegance */
+            border: 2px solid;
+            border-color: #fff #222 #222 #fff;
+            padding: 10px 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            text-shadow: 2px 2px #222;
+            width: 180px;
+            text-align: center;
+            transition: background 0.1s;
+        }
+
+        .mc-btn:hover {
+            background-color: #8c9dc3;
+            border-color: #fff #222 #222 #fff;
+        }
+
+        .mc-btn:active {
+            border-color: #222 #fff #fff #222;
+            background-color: #555;
+        }
+
+        /* --- GENERAL CONTAINER (Main Boxes) --- */
+        .container {
+            width: 90%;
+            max-width: 900px;
+            /* Increased transparency for glass effect over video */
+            background: rgba(0, 0, 0, 0.75); 
+            border: 2px solid #555;
+            padding: 20px;
+            margin-bottom: 50px;
+            height: auto;
+            overflow: hidden; 
+            
+            /* Hover Animations */
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px); 
+            border-color: #ffffff;      
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8); 
+        }
+
+        h2.section-title {
+            color: #aaaaaa;
+            font-size: 2rem;
+            border-bottom: 2px solid #555;
+            padding-bottom: 10px;
+            margin-top: 0;
+            text-transform: uppercase;
+        }
+
+        /* --- ABOUT TEXT --- */
+        .bio-text {
+            color: #5cbd34;
+            font-size: 1.3rem;
+            line-height: 1.6;
+            text-transform: uppercase;
+            min-height: 50px; 
+        }
+
+        /* --- SKILLS LIST --- */
+        .skill-list {
+            list-style: none; 
+            padding: 0; 
+            font-size: 1.4rem;
+        }
+        .skill-item {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* --- PROJECTS SECTION --- */
+        .projects-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .game-card {
+            background-color: #0d0d0d; 
+            border: 2px solid #333;
+            border-radius: 15px; 
+            width: 48%; 
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: #555;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid #333;
+        }
+
+        .card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            color: var(--neon-cyan);
+            font-size: 1.5rem;
+            margin: 0 0 10px 0;
+        }
+
+        .card-desc {
+            color: #e0e0e0;
+            font-size: 1rem;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .access-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            text-align: center;
+            border: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            background: transparent;
+            transition: all 0.2s;
+        }
+
+        .access-btn:hover {
+            background: rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        /* --- CONTACT --- */
+        .chat-box {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border: 1px solid #555;
+            font-size: 1.3rem;
+            color: white;
+            height: 150px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        .chat-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #555;
+            color: white;
+            padding: 10px;
+            font-size: 1.3rem;
+            outline: none;
+        }
+        
+        .chat-input:focus { border-color: #aaaaaa; }
+        .system-msg { color: #ffff55; }
+        .player-msg { color: white; }
+
+        footer {
+            margin-bottom: 20px;
+            color: #ccc; /* Lighter footer text for readability over video */
+            font-size: 1rem;
+            text-shadow: 1px 1px 2px black;
+        }
+    </style>
 </head>
 <body>
 
+    <video autoplay muted loop id="bg-video">
+        <source src="bg.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    
+    <div class="video-overlay"></div>
+
     <header>
         <h1>AWWAB ALI MIRZA</h1>
-        <h2>AI ENGINEER </h2>
+        <h2 class="subtitle">AI ENGINEER</h2>
     </header>
 
     <nav>
-        <a href="#projects" class="mc-btn">HOME</a>
-        <a href="#about" class="mc-btn">ABOUT</a>
-        <a href="#contact" class="mc-btn">SKILLS</a>
-        <a href="#contact" class="mc-btn">PROJECTS</a>
-        <a href="#contact" class="mc-btn">GOALS</a>
+        <a href="home.html" class="mc-btn">HOME</a>
+        <a href="#home" class="mc-btn">ABOUT</a>
+        <a href="#skills" class="mc-btn">SKILLS</a>
+        <a href="#projects" class="mc-btn">PROJECTS</a>
+        <a href="#goals" class="mc-btn">GOALS</a>
         <a href="#contact" class="mc-btn">CONTACT</a>
     </nav>
 
-    <div class="container" id="projects">
-        <h2>ABOUT</h2>
-        
-            
-        </div>
+    <div class="container" id="home">
+        <h2 class="section-title">ABOUT ME</h2>
+        <p class="bio-text" id="typewriter-text"></p>
+    </div>
 
-    <div class="container" id="about">
-        <h2>Skills</h2>
-        <ul style="list-style: none; padding: 0; font-size: 1.4rem;">
-            <li style="margin-bottom: 10px;">
+    <div class="container" id="skills">
+        <h2 class="section-title">SKILLS AND CAPABILITIES</h2>
+        <ul class="skill-list">
+            <li class="skill-item">
                 <span style="color: #5cbd34;">HTML & CSS</span> 
-                <span style="float: right; color: #ffff55;">Level 64</span>
+                <span style="color: #ffff55;">Level 64</span>
             </li>
-            <li style="margin-bottom: 10px;">
+            <li class="skill-item">
                 <span style="color: #5cbd34;">Creative Developer/Designer</span> 
-                <span style="float: right; color: #ffff55;">Level 45</span>
+                <span style="color: #ffff55;">Level 45</span>
             </li>
-            <li style="margin-bottom: 10px;">
+            <li class="skill-item">
                 <span style="color: #5cbd34;">C++</span> 
-                <span style="float: right; color: #ffff55;">Level 30</span>
+                <span style="color: #ffff55;">Level 30</span>
             </li>
-            <li style="margin-bottom: 10px;">
+            <li class="skill-item">
                 <span style="color: #5cbd34;">Pressure Handler</span> 
-                <span style="float: right; color: #ffff55;">Level 99</span>
+                <span style="color: #ffff55;">Level 99</span>
             </li>
         </ul>
     </div>
-     <div class="container" id="projects">
-        <h2>PROJECTS</h2>
+
+    <div class="container" id="projects">
+        <h2 class="section-title">PROJECTS</h2>
         
-            
+        <div class="projects-wrapper">
+            <div class="game-card">
+                <img src="2.png" alt="Tumble Pop" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">A COMMUNITY WEBSITE </h3>
+                    <p class="card-desc">
+                        A website created to bring together enthusiasts from various fields to share knowledge, collaborate on projects, and foster a sense of community.
+                    </p>
+                    <a href="#" class="access-btn">ACCESS DATA</a>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <img src="9.jpg" alt="Brick Breaker" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">COMING SOON</h3>
+                    <p class="card-desc">
+                        
+                    </p>
+                    <a href="#" class="access-btn">ACCESS DATA</a>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <div class="container" id="goals">
+        <h2 class="section-title">GOALS</h2>
+        <p style="font-size: 1.2rem; color: #ccc;">
+            > 2025-2029 BECOME A LEADING AI ENGINEER IN THE INDUSTRY.<br><br>
+            > CONTRIBUTE TO  AI RESEARCH AND DEVELOPMENT.<br><br>
+            > COLLABORATE WITH TOP TECH COMPANIES ON INNOVATIVE PROJECTS.<br><br>
+            > CONTINUOUSLY UPGRADE MY SKILLS AND STAY AHEAD IN THE FIELD OF AI/ML.<br><br>
+            > BUILD A PORTFOLIO OF SUCCESSFUL AI-DRIVEN APPLICATIONS.
+        </p>
+    </div>
+
     <div class="container" id="contact">
-        <h2>Contact</h2>
+        <h2 class="section-title">CONTACT</h2>
         <div class="chat-box" id="chat-history">
             <div class="system-msg"> Welcome to the portfolio!</div>
             <div class="system-msg"> Type a message below to say hi.</div>
@@ -65,5 +378,58 @@
     <footer>
         <p>© 2026 Awwab Ali Mirza. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        // --- TYPEWRITER EFFECT LOGIC ---
+        const aboutMeText = "I AM AN ASPIRING AI ENGINEER AND COMPUTER SCIENTIST CURRENTLY PURSUING MY BACHELOR'S AT THE NATIONAL UNIVERSITY OF COMPUTER AND EMERGING SCIENCES.<br><br>MY JOURNEY INTO TECH IS UNIQUE—I CAME FROM A BACKGROUND WITH ABSOLUTELY ZERO CODING EXPERIENCE. HOWEVER, DIVING INTO C++ COMPLETELY TRANSFORMED MY WORLDVIEW. I WENT FROM BEING A PASSIVE USER OF TECHNOLOGY TO AN ACTIVE CREATOR AND INNOVATOR.";
+        
+        const typeContainer = document.getElementById('typewriter-text');
+        let typeIndex = 0;
+
+        function typeWriter() {
+            if (typeIndex < aboutMeText.length) {
+                if (aboutMeText.substring(typeIndex, typeIndex + 4) === "<br>") {
+                    typeContainer.innerHTML += "<br>";
+                    typeIndex += 4;
+                } else {
+                    typeContainer.innerHTML += aboutMeText.charAt(typeIndex);
+                    typeIndex++;
+                }
+                setTimeout(typeWriter, 30);
+            }
+        }
+
+        window.onload = function() {
+            typeWriter();
+        };
+
+        // --- CHAT SYSTEM LOGIC ---
+        const chatInput = document.getElementById('chat-input');
+        const chatHistory = document.getElementById('chat-history');
+
+        function sendMessage() {
+            const text = chatInput.value;
+            if(text.trim() === "") return;
+
+            const userLine = document.createElement('div');
+            userLine.className = 'player-msg';
+            userLine.innerHTML = `&lt;Awwab&gt; ${text}`;
+            chatHistory.appendChild(userLine);
+            chatInput.value = "";
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+
+            setTimeout(() => {
+                const serverLine = document.createElement('div');
+                serverLine.className = 'system-msg';
+                serverLine.innerHTML = `&lt;Server&gt; Message received!`;
+                chatHistory.appendChild(serverLine);
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+            }, 1000);
+        }
+
+        chatInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
 </body>
 </html>
