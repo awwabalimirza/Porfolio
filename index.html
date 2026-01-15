@@ -105,10 +105,10 @@
             margin-top: 5px;
         }
 
-        /* --- NAVIGATION (UPDATED ALIGNMENT) --- */
+        /* --- NAVIGATION (IMPROVED CONSISTENCY) --- */
         nav {
             display: flex;
-            gap: 15px;
+            gap: 15px; /* Spacing between tiles */
             margin-bottom: 40px;
             flex-wrap: wrap;
             justify-content: center;
@@ -127,27 +127,34 @@
             background-color: rgba(120, 120, 120, 0.8); 
             border: 2px solid;
             border-color: #fff #222 #222 #fff;
-            padding: 10px 20px; /* Adjusted padding */
             color: white;
             text-decoration: none;
-            font-size: 1.5rem;
+            font-size: 1.4rem; /* Slightly reduced for better fit */
             text-shadow: 2px 2px #222;
-            width: 180px;
+            text-align: center;
             transition: background 0.1s;
+            
+            /* --- SIZING FIXES --- */
+            /* Instead of fixed width, use min-width for consistency */
+            min-width: 150px; 
+            /* Ensure height is consistent */
+            height: 50px;     
+            /* Padding for internal spacing */
+            padding: 0 20px; 
             
             /* FLEXBOX FOR PERFECT ALIGNMENT */
             display: inline-flex;       
-            align-items: center;        /* Vertically centers items */
-            justify-content: center;    /* Horizontally centers items */
-            gap: 10px;                  /* Space between Icon and Text */
-            line-height: 1;             /* Prevents text from pushing down */
+            align-items: center;        
+            justify-content: center;    
+            gap: 10px;                  
+            line-height: 1;             
         }
 
         /* Nav Icons Styling */
         .mc-btn i {
             color: var(--neon-cyan);
-            font-size: 1.6rem; /* Slightly larger for visibility */
-            display: block;    /* Ensures icon behaves correctly in flex */
+            font-size: 1.5rem; 
+            display: block;    
         }
 
         .mc-btn:hover {
@@ -183,7 +190,7 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
         }
 
-        /* Section Headings Alignment */
+        /* Section Headings */
         h2.section-title {
             color: #aaaaaa;
             font-size: 2rem;
@@ -191,8 +198,6 @@
             padding-bottom: 10px;
             margin-top: 0;
             text-transform: uppercase;
-            
-            /* Flex for Header Icons */
             display: flex;
             align-items: center; 
             gap: 15px;
@@ -200,7 +205,7 @@
         
         h2.section-title i {
             color: var(--neon-cyan);
-            font-size: 2.2rem; /* Larger icons for headers */
+            font-size: 2.2rem; 
         }
 
         .bio-text {
