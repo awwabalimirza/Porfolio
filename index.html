@@ -55,7 +55,6 @@
         body {
             margin: 0;
             padding: 0;
-            /* Removed the old CSS pattern background */
             color: white;
             display: flex;
             flex-direction: column;
@@ -119,26 +118,39 @@
         }
 
         /* --- GENERAL CONTAINER (Main Boxes) --- */
+        /* UPDATED SECTION FOR GLASSMORSPSHIM EFFECT */
         .container {
             width: 90%;
             max-width: 900px;
-            /* Increased transparency for glass effect over video */
-            background: rgba(0, 0, 0, 0.75); 
-            border: 2px solid #555;
+            
+            /* 1. Make background much more transparent */
+            background: rgba(0, 0, 0, 0.2); 
+            
+            /* 2. Add the blur filter for what is behind the box */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); /* Safari support */
+            
+            /* 3. Change border to semi-transparent white for better glass look */
+            border: 2px solid rgba(255, 255, 255, 0.1);
+
             padding: 20px;
             margin-bottom: 50px;
             height: auto;
             overflow: hidden; 
             
             /* Hover Animations */
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
         }
 
         .container:hover {
             transform: translateY(-5px); 
-            border-color: #ffffff;      
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8); 
+            /* On hover, make border bright white */
+            border-color: #ffffff;
+            /* Slightly darken background on hover for contrast */
+            background: rgba(0, 0, 0, 0.4); 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
         }
+        /* ----------------------------------------- */
 
         h2.section-title {
             color: #aaaaaa;
@@ -179,7 +191,8 @@
         }
 
         .game-card {
-            background-color: #0d0d0d; 
+            /* Updated game cards to match the new glass style slightly, but darker */
+            background-color: rgba(0, 0, 0, 0.5); 
             border: 2px solid #333;
             border-radius: 15px; 
             width: 48%; 
@@ -187,12 +200,12 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            transition: transform 0.2s;
+            transition: transform 0.2s, border-color 0.2s;
         }
 
         .game-card:hover {
             transform: translateY(-5px);
-            border-color: #555;
+            border-color: var(--neon-cyan);
         }
 
         .card-img {
@@ -291,8 +304,8 @@
     </header>
 
     <nav>
-        <a href="index.html" class="mc-btn">HOME</a>
-        <a href="#home" class="mc-btn">ABOUT</a>
+        <a href="#home" class="mc-btn">HOME</a>
+        <a href="#about" class="mc-btn">ABOUT</a>
         <a href="#skills" class="mc-btn">SKILLS</a>
         <a href="#projects" class="mc-btn">PROJECTS</a>
         <a href="#goals" class="mc-btn">GOALS</a>
