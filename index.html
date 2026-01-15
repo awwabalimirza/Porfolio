@@ -23,6 +23,13 @@
             --neon-cyan: #00ffff;
         }
 
+        /* --- CUSTOM SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #1e1e1f; }
+        ::-webkit-scrollbar-thumb { background-color: #5cbd34; border: 1px solid #000; }
+        ::-webkit-scrollbar-thumb:hover { background-color: #4cae2b; }
+        html { scrollbar-color: #5cbd34 #1e1e1f; scrollbar-width: auto; scroll-behavior: smooth; }
+
         /* --- CURSOR SETUP --- */
         * {
             box-sizing: border-box;
@@ -37,19 +44,18 @@
             bottom: 0;
             min-width: 100%;
             min-height: 100%;
-            z-index: -2; /* Behind everything */
+            z-index: -2; 
             object-fit: cover;
         }
 
-        /* Elegant Overlay to darken the video so text pops */
         .video-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6); /* 60% Dark tint */
-            z-index: -1; /* Above video, behind content */
+            background: rgba(0, 0, 0, 0.6); 
+            z-index: -1; 
         }
 
         body {
@@ -68,6 +74,19 @@
             margin-top: 50px;
             margin-bottom: 30px;
             position: relative;
+        }
+
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #ffffff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         h1 {
@@ -91,10 +110,19 @@
             margin-bottom: 40px;
             flex-wrap: wrap;
             justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000; 
+            width: 100%;   
+            padding: 20px 0; 
+            background: rgba(0, 0, 0, 0.6); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
         }
 
         .mc-btn {
-            background-color: rgba(120, 120, 120, 0.8); /* Slight opacity for elegance */
+            background-color: rgba(120, 120, 120, 0.8); 
             border: 2px solid;
             border-color: #fff #222 #222 #fff;
             padding: 10px 30px;
@@ -117,40 +145,28 @@
             background-color: #555;
         }
 
-        /* --- GENERAL CONTAINER (Main Boxes) --- */
-        /* UPDATED SECTION FOR GLASSMORSPSHIM EFFECT */
+        /* --- GENERAL CONTAINER --- */
         .container {
             width: 90%;
             max-width: 900px;
-            
-            /* 1. Make background much more transparent */
             background: rgba(0, 0, 0, 0.2); 
-            
-            /* 2. Add the blur filter for what is behind the box */
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px); /* Safari support */
-            
-            /* 3. Change border to semi-transparent white for better glass look */
+            -webkit-backdrop-filter: blur(10px); 
             border: 2px solid rgba(255, 255, 255, 0.1);
-
             padding: 20px;
             margin-bottom: 50px;
             height: auto;
             overflow: hidden; 
-            
-            /* Hover Animations */
+            scroll-margin-top: 130px; 
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
         }
 
         .container:hover {
             transform: translateY(-5px); 
-            /* On hover, make border bright white */
             border-color: #ffffff;
-            /* Slightly darken background on hover for contrast */
             background: rgba(0, 0, 0, 0.4); 
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
         }
-        /* ----------------------------------------- */
 
         h2.section-title {
             color: #aaaaaa;
@@ -161,7 +177,6 @@
             text-transform: uppercase;
         }
 
-        /* --- ABOUT TEXT --- */
         .bio-text {
             color: #5cbd34;
             font-size: 1.3rem;
@@ -191,7 +206,6 @@
         }
 
         .game-card {
-            /* Updated game cards to match the new glass style slightly, but darker */
             background-color: rgba(0, 0, 0, 0.5); 
             border: 2px solid #333;
             border-radius: 15px; 
@@ -255,35 +269,70 @@
             box-shadow: 0 0 10px var(--neon-cyan);
         }
 
-        /* --- CONTACT --- */
-        .chat-box {
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border: 1px solid #555;
-            font-size: 1.3rem;
-            color: white;
-            height: 150px;
-            overflow-y: auto;
-            margin-bottom: 10px;
-        }
-
-        .chat-input {
+        /* --- CONTACT FORM STYLES --- */
+        .mc-input {
             width: 100%;
             background: rgba(0, 0, 0, 0.5);
-            border: 1px solid #555;
+            border: 2px solid #555;
             color: white;
-            padding: 10px;
-            font-size: 1.3rem;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-family: 'Minecraft', monospace;
             outline: none;
+            margin-bottom: 15px;
+            transition: border-color 0.2s;
         }
-        
-        .chat-input:focus { border-color: #aaaaaa; }
-        .system-msg { color: #ffff55; }
-        .player-msg { color: white; }
+
+        .mc-input:focus {
+            border-color: #5cbd34; /* Highlights green when typing */
+        }
+
+        .mc-input::placeholder {
+            color: #888;
+        }
+
+        /* --- SOCIAL ICONS --- */
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #5cbd34;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .social-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: #ffff55;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background-color: #5cbd34;
+            box-shadow: 0 0 15px #5cbd34;
+            transform: scale(1.1);
+        }
+
+        .social-btn:hover svg {
+            fill: white;
+        }
 
         footer {
             margin-bottom: 20px;
-            color: #ccc; /* Lighter footer text for readability over video */
+            color: #ccc; 
             font-size: 1rem;
             text-shadow: 1px 1px 2px black;
         }
@@ -292,20 +341,21 @@
 <body>
 
     <video autoplay muted loop id="bg-video">
-        <source src="bg.mp4" type="video/mp4">
+        <source src="bg.mp4" type="video/webm">
         Your browser does not support HTML5 video.
     </video>
     
     <div class="video-overlay"></div>
 
     <header>
+        <img src="pf.jpeg" alt="Profile" class="profile-pic">
         <h1>AWWAB ALI MIRZA</h1>
         <h2 class="subtitle">AI ENGINEER</h2>
     </header>
 
     <nav>
-        <a href="#home" class="mc-btn">HOME</a>
-        <a href="#about" class="mc-btn">ABOUT</a>
+        <a href="#" class="mc-btn">HOME</a> 
+        <a href="#home" class="mc-btn">ABOUT</a>
         <a href="#skills" class="mc-btn">SKILLS</a>
         <a href="#projects" class="mc-btn">PROJECTS</a>
         <a href="#goals" class="mc-btn">GOALS</a>
@@ -315,6 +365,18 @@
     <div class="container" id="home">
         <h2 class="section-title">ABOUT ME</h2>
         <p class="bio-text" id="typewriter-text"></p>
+        
+        <div class="social-links">
+            <a href="https://github.com/awwabalimirza" target="_blank" class="social-btn">
+                <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/awwab-ali-mirza-012435352/" target="_blank" class="social-btn">
+                <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/awwabalimirza/" target="_blank" class="social-btn">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+        </div>
     </div>
 
     <div class="container" id="skills">
@@ -380,12 +442,26 @@
 
     <div class="container" id="contact">
         <h2 class="section-title">CONTACT</h2>
-        <div class="chat-box" id="chat-history">
-            <div class="system-msg"> Welcome to the portfolio!</div>
-            <div class="system-msg"> Type a message below to say hi.</div>
+        
+        <form id="contact-form" action="https://formspree.io/f/xnjjnwjo" method="POST">
+            <input type="text" id="contact-name" name="name" class="mc-input" placeholder="Your Name" required>
+            <input type="email" id="contact-email" name="email" class="mc-input" placeholder="Your Email" required>
+            <textarea id="contact-message" name="message" class="mc-input" rows="5" placeholder="Type your message here..." required></textarea>
+            
+            <button type="submit" class="mc-btn" style="width: 100%; margin-top: 10px;">Send Message</button>
+        </form>
+
+        <div class="social-links" style="border-bottom: 1px solid rgba(255,255,255,0.1); border-top: none; padding-bottom: 20px; margin-bottom: 20px; margin-top: 20px;">
+            <a href="https://github.com/awwabalimirza" target="_blank" class="social-btn">
+                <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/awwab-ali-mirza-012435352/" target="_blank" class="social-btn">
+                <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/awwabalimirza/" target="_blank" class="social-btn">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
         </div>
-        <input type="text" class="chat-input" placeholder="Tap to open chat..." id="chat-input">
-        <button class="mc-btn" style="width: 100%; margin-top: 10px;" onclick="sendMessage()">Send Message</button>
     </div>
 
     <footer>
@@ -416,33 +492,36 @@
             typeWriter();
         };
 
-        // --- CHAT SYSTEM LOGIC ---
-        const chatInput = document.getElementById('chat-input');
-        const chatHistory = document.getElementById('chat-history');
+        // --- CONTACT FORM AJAX LOGIC ---
+        var form = document.getElementById("contact-form");
 
-        function sendMessage() {
-            const text = chatInput.value;
-            if(text.trim() === "") return;
-
-            const userLine = document.createElement('div');
-            userLine.className = 'player-msg';
-            userLine.innerHTML = `&lt;Awwab&gt; ${text}`;
-            chatHistory.appendChild(userLine);
-            chatInput.value = "";
-            chatHistory.scrollTop = chatHistory.scrollHeight;
-
-            setTimeout(() => {
-                const serverLine = document.createElement('div');
-                serverLine.className = 'system-msg';
-                serverLine.innerHTML = `&lt;Server&gt; Message received!`;
-                chatHistory.appendChild(serverLine);
-                chatHistory.scrollTop = chatHistory.scrollHeight;
-            }, 1000);
+        async function handleSubmit(event) {
+            event.preventDefault();
+            var data = new FormData(event.target);
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    alert("Thanks! Your message has been sent to Awwab.");
+                    form.reset();
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            alert(data["errors"].map(error => error["message"]).join(", "));
+                        } else {
+                            alert("Oops! There was a problem submitting your form");
+                        }
+                    })
+                }
+            }).catch(error => {
+                alert("Oops! There was a problem submitting your form");
+            });
         }
-
-        chatInput.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') sendMessage();
-        });
+        form.addEventListener("submit", handleSubmit);
     </script>
 </body>
 </html>
