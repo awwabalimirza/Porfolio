@@ -25,12 +25,33 @@
             --neon-cyan: #00ffff;
         }
 
-        /* --- CUSTOM SCROLLBAR --- */
-        ::-webkit-scrollbar { width: 12px; }
-        ::-webkit-scrollbar-track { background: #1e1e1f; }
-        ::-webkit-scrollbar-thumb { background-color: #5cbd34; border: 1px solid #000; }
-        ::-webkit-scrollbar-thumb:hover { background-color: #4cae2b; }
-        html { scrollbar-color: #5cbd34 #1e1e1f; scrollbar-width: auto; scroll-behavior: smooth; }
+        /* --- CUSTOM SCROLLBAR FIXED --- */
+        ::-webkit-scrollbar { 
+            width: 12px; 
+        }
+        
+        /* Track: Transparent */
+        ::-webkit-scrollbar-track { 
+            background: transparent; 
+        }
+        
+        /* Thumb: Minecraft Green */
+        ::-webkit-scrollbar-thumb { 
+            background-color: #5cbd34; 
+            border: 1px solid #000; 
+        }
+        
+        ::-webkit-scrollbar-thumb:hover { 
+            background-color: #4cae2b; 
+        }
+        
+        /* THE FIX: Set background to dark so the "white bar" disappears */
+        html { 
+            background-color: #101010; /* Changes browser base from White to Dark */
+            scrollbar-color: #5cbd34 transparent; 
+            scrollbar-width: auto; 
+            scroll-behavior: smooth; 
+        }
 
         /* --- CURSOR SETUP --- */
         * {
@@ -105,10 +126,10 @@
             margin-top: 5px;
         }
 
-        /* --- NAVIGATION (IMPROVED CONSISTENCY) --- */
+        /* --- NAVIGATION --- */
         nav {
             display: flex;
-            gap: 15px; /* Spacing between tiles */
+            gap: 15px;
             margin-bottom: 40px;
             flex-wrap: wrap;
             justify-content: center;
@@ -129,20 +150,13 @@
             border-color: #fff #222 #222 #fff;
             color: white;
             text-decoration: none;
-            font-size: 1.4rem; /* Slightly reduced for better fit */
+            font-size: 1.4rem; 
             text-shadow: 2px 2px #222;
             text-align: center;
             transition: background 0.1s;
-            
-            /* --- SIZING FIXES --- */
-            /* Instead of fixed width, use min-width for consistency */
             min-width: 150px; 
-            /* Ensure height is consistent */
             height: 50px;     
-            /* Padding for internal spacing */
             padding: 0 20px; 
-            
-            /* FLEXBOX FOR PERFECT ALIGNMENT */
             display: inline-flex;       
             align-items: center;        
             justify-content: center;    
@@ -150,7 +164,6 @@
             line-height: 1;             
         }
 
-        /* Nav Icons Styling */
         .mc-btn i {
             color: var(--neon-cyan);
             font-size: 1.5rem; 
@@ -190,7 +203,6 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
         }
 
-        /* Section Headings */
         h2.section-title {
             color: #aaaaaa;
             font-size: 2rem;
@@ -262,16 +274,17 @@
     </header>
 
     <nav>
-        <a href="#" class="mc-btn"><i class='bx bx-home'></i> HOME</a> 
-        <a href="#home" class="mc-btn"><i class='bx bx-user'></i> ABOUT</a>
+        <a href="#" class="mc-btn"><i class='bx bx-home-alt-2'></i> HOME</a> 
+        <a href="#home" class="mc-btn"><i class='bx bx-user-circle'></i> ABOUT</a>
+         <a href="#home" class="mc-btn"><i class='bx bx-user-circle'></i> EDUCATION</a>
         <a href="#skills" class="mc-btn"><i class='bx bx-chip'></i> SKILLS</a>
-        <a href="#projects" class="mc-btn"><i class='bx bx-folder'></i> PROJECTS</a>
+        <a href="#projects" class="mc-btn"><i class='bx bx-folder-open'></i> PROJECTS</a>
         <a href="#goals" class="mc-btn"><i class='bx bx-target-lock'></i> GOALS</a>
         <a href="#contact" class="mc-btn"><i class='bx bx-paper-plane'></i> CONTACT</a>
     </nav>
 
     <div class="container" id="home">
-        <h2 class="section-title"><i class='bx bx-user'></i> ABOUT ME</h2>
+        <h2 class="section-title"><i class='bx bx-user-circle'></i> ABOUT ME</h2>
         <p class="bio-text" id="typewriter-text"></p>
         
         <div class="social-links">
@@ -286,7 +299,9 @@
             </a>
         </div>
     </div>
-
+     <div class="container" id="home">
+        <h2 class="section-title"><i class='bx bx-user-circle'></i> EDUCATION</h2>
+        </div>
     <div class="container" id="skills">
         <h2 class="section-title"><i class='bx bx-chip'></i> SKILLS AND CAPABILITIES</h2>
         <ul class="skill-list">
@@ -298,7 +313,7 @@
     </div>
 
     <div class="container" id="projects">
-        <h2 class="section-title"><i class='bx bx-folder'></i> PROJECTS</h2>
+        <h2 class="section-title"><i class='bx bx-folder-open'></i> PROJECTS</h2>
         <div class="projects-wrapper">
             <div class="game-card">
                 <img src="2.png" alt="Tumble Pop" class="card-img">
@@ -358,7 +373,7 @@
     </footer>
 
     <script>
-        const aboutMeText = "I AM AN ASPIRING AI ENGINEER AND COMPUTER SCIENTIST CURRENTLY PURSUING MY BACHELORS AT THE NATIONAL UNIVERSITY OF COMPUTER AND EMERGING SCIENCES.<br>MY JOURNEY INTO TECH IS UNIQUE. I CAME FROM A BACKGROUND WITH ABSOLUTELY ZERO CODING EXPERIENCE. HOWEVER, DIVING INTO C++ COMPLETELY TRANSFORMED MY WORLDVIEW. I WENT FROM BEING A PASSIVE USER OF TECHNOLOGY TO AN ACTIVE CREATOR AND INNOVATOR.";
+        const aboutMeText = "I AM AN ASPIRING AI ENGINEER AND COMPUTER SCIENTIST CURRENTLY PURSUING MY BACHELOR'S AT THE NATIONAL UNIVERSITY OF COMPUTER AND EMERGING SCIENCES.<br><br>MY JOURNEY INTO TECH IS UNIQUE—I CAME FROM A BACKGROUND WITH ABSOLUTELY ZERO CODING EXPERIENCE. HOWEVER, DIVING INTO C++ COMPLETELY TRANSFORMED MY WORLDVIEW. I WENT FROM BEING A PASSIVE USER OF TECHNOLOGY TO AN ACTIVE CREATOR AND INNOVATOR.";
         
         const typeContainer = document.getElementById('typewriter-text');
         let typeIndex = 0;
