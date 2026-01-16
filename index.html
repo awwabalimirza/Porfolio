@@ -23,6 +23,7 @@
             --mc-green: #5cbd34;
             --mc-dirt: #3f2713;
             --neon-cyan: #00ffff;
+            --mc-yellow: #ffff55; /* Added Minecraft Yellow for the typing effect */
         }
 
         /* --- CUSTOM SCROLLBAR FIXED --- */
@@ -124,6 +125,23 @@
             font-size: 2rem;
             color: #aaaaaa;
             margin-top: 5px;
+            min-height: 2.4rem; /* Keeps layout stable during typing */
+        }
+
+        /* NEW STYLES FOR TYPING EFFECT */
+        .typing-text {
+            color: var(--mc-yellow);
+            text-shadow: 2px 2px #000;
+        }
+        
+        .cursor-blink {
+            color: var(--mc-green);
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         /* --- NAVIGATION --- */
@@ -270,7 +288,7 @@
     <header>
         <img src="pf.jpeg" alt="Profile" class="profile-pic">
         <h1>AWWAB ALI MIRZA</h1>
-        <h2 class="subtitle">AI ENGINEER</h2>
+        <h2 class="subtitle">I'm a <span class="typing-text"></span><span class="cursor-blink">|</span></h2>
     </header>
 
     <nav>
@@ -373,8 +391,8 @@
     </footer>
 
     <script>
+        // --- 1. ABOUT ME TYPEWRITER (ORIGINAL) ---
         const aboutMeText = "I AM AN ASPIRING AI ENGINEER AND COMPUTER SCIENTIST CURRENTLY PURSUING MY BACHELORS AT THE NATIONAL UNIVERSITY OF COMPUTER AND EMERGING SCIENCES.<br>MY JOURNEY INTO TECH IS UNIQUE. I CAME FROM A BACKGROUND WITH ABSOLUTELY ZERO CODING EXPERIENCE. HOWEVER, DIVING INTO C++ COMPLETELY TRANSFORMED MY WORLDVIEW. I WENT FROM BEING A PASSIVE USER OF TECHNOLOGY TO AN ACTIVE CREATOR AND INNOVATOR.";
-        
         const typeContainer = document.getElementById('typewriter-text');
         let typeIndex = 0;
 
@@ -387,14 +405,58 @@
                     typeContainer.innerHTML += aboutMeText.charAt(typeIndex);
                     typeIndex++;
                 }
-                setTimeout(typeWriter, 30);
+                // SPEED CHANGED HERE (30 -> 75)
+                setTimeout(typeWriter, 75);
             }
         }
 
+        // --- 2. HEADER TEXT SCRAMBLER/TYPER (NEW) ---
+        const headerTexts = ["BSAI STUDENT", "PROBLEM SOLVER", "FRONT END DEVELOPER"];
+        let headerCount = 0; // Index of current phrase
+        let headerIndex = 0; // Index of current character
+        let currentHeaderText = "";
+        let headerLetter = "";
+        let isDeleting = false;
+
+        function headerTypewriter() {
+            if (headerCount === headerTexts.length) {
+                headerCount = 0; // Loop back to start
+            }
+            currentHeaderText = headerTexts[headerCount];
+
+            if (isDeleting) {
+                headerLetter = currentHeaderText.slice(0, --headerIndex);
+            } else {
+                headerLetter = currentHeaderText.slice(0, ++headerIndex);
+            }
+
+            document.querySelector('.typing-text').textContent = headerLetter;
+
+            // Typing Speed Control
+            let typeSpeed = 100;
+            if (isDeleting) typeSpeed = 50; // Delete faster than type
+
+            if (!isDeleting && headerLetter.length === currentHeaderText.length) {
+                // Phrase complete - wait before deleting
+                typeSpeed = 2000; 
+                isDeleting = true;
+            } else if (isDeleting && headerLetter.length === 0) {
+                // Deletion complete - move to next phrase
+                isDeleting = false;
+                headerCount++;
+                typeSpeed = 500;
+            }
+
+            setTimeout(headerTypewriter, typeSpeed);
+        }
+
+        // --- INITIALIZATION ---
         window.onload = function() {
-            typeWriter();
+            typeWriter(); // Start About Me typewriter
+            headerTypewriter(); // Start Header text typewriter
         };
 
+        // --- FORM HANDLING ---
         var form = document.getElementById("contact-form");
 
         async function handleSubmit(event) {
