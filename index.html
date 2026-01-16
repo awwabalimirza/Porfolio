@@ -20,33 +20,18 @@
             --mc-btn-shadow: #3b3b3b;
             --mc-btn-light: #d9d9d9;
             --mc-text-shadow: 2px 2px #000;
-            --mc-green: #5cbd34; /* The About Me Color */
+            --mc-green: #5cbd34; /* Main Theme Color */
             --mc-dirt: #3f2713;
             --neon-cyan: #00ffff;
             --mc-yellow: #ffff55;
         }
 
-        /* --- CUSTOM SCROLLBAR FIXED --- */
-        ::-webkit-scrollbar { 
-            width: 12px; 
-        }
+        /* --- CUSTOM SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background-color: #5cbd34; border: 1px solid #000; }
+        ::-webkit-scrollbar-thumb:hover { background-color: #4cae2b; }
         
-        /* Track: Transparent */
-        ::-webkit-scrollbar-track { 
-            background: transparent; 
-        }
-        
-        /* Thumb: Minecraft Green */
-        ::-webkit-scrollbar-thumb { 
-            background-color: #5cbd34; 
-            border: 1px solid #000; 
-        }
-        
-        ::-webkit-scrollbar-thumb:hover { 
-            background-color: #4cae2b; 
-        }
-        
-        /* THE FIX: Set background to dark so the "white bar" disappears */
         html { 
             background-color: #101010;
             scrollbar-color: #5cbd34 transparent; 
@@ -54,7 +39,6 @@
             scroll-behavior: smooth; 
         }
 
-        /* --- CURSOR SETUP --- */
         * {
             box-sizing: border-box;
             font-family: 'Minecraft', monospace;
@@ -90,7 +74,7 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+            overflow-x: hidden; 
         }
 
         /* --- HEADER --- */
@@ -103,7 +87,7 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            padding: 0 15px; /* Add padding for mobile */
+            padding: 0 15px;
         }
 
         .profile-pic {
@@ -112,7 +96,6 @@
             object-fit: cover;
             border-radius: 50%;
             border: 4px solid #ffffff;
-            /* GLOW EFFECT */
             box-shadow: 0 0 25px var(--neon-cyan), 0 0 10px rgba(0,0,0,0.5);
             margin-bottom: 15px;
             display: block;
@@ -121,7 +104,6 @@
             transition: box-shadow 0.3s ease-in-out, transform 0.3s ease;
         }
 
-        /* GLOW INTENSIFIES ON HOVER */
         .profile-pic:hover {
             box-shadow: 0 0 50px var(--neon-cyan), 0 0 20px var(--neon-cyan);
             transform: scale(1.02);
@@ -133,7 +115,7 @@
             color: #dcdcdc;
             text-shadow: 4px 4px 0px #3f3f3f;
             letter-spacing: 2px;
-            line-height: 1.1; /* Better spacing on mobile lines */
+            line-height: 1.1;
         }
         
         h2.subtitle {
@@ -144,29 +126,21 @@
             margin-bottom: 25px; 
         }
 
-        /* UPDATED: Typing text matches mc-green */
-        .typing-text {
-            color: var(--mc-green); 
-            text-shadow: 2px 2px #000;
-        }
-        
-        .cursor-blink {
-            color: var(--mc-green);
-            animation: blink 0.7s infinite;
-        }
+        .typing-text { color: var(--mc-green); text-shadow: 2px 2px #000; }
+        .cursor-blink { color: var(--mc-green); animation: blink 0.7s infinite; }
 
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
         }
 
-        /* --- HERO BUTTONS (UPDATED COLORS) --- */
+        /* --- HERO BUTTONS --- */
         .hero-buttons {
             display: flex;
             gap: 20px;
             justify-content: center;
             margin-top: 10px;
-            flex-wrap: wrap; /* Allow wrapping on mobile */
+            flex-wrap: wrap;
         }
 
         .hero-btn {
@@ -177,12 +151,11 @@
             font-weight: bold;
             display: flex;
             align-items: center;
-            justify-content: center; /* Center content on mobile */
+            justify-content: center;
             gap: 10px;
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        /* Green Button (Featured Work) - Matches About Me Green */
         .hero-btn.primary {
             background-color: var(--mc-green);
             color: black;
@@ -193,7 +166,6 @@
             box-shadow: 0 0 20px var(--mc-green);
         }
 
-        /* Black Button (Collaborate) - Matches About Me Green Border/Text */
         .hero-btn.secondary {
             background-color: black;
             color: var(--mc-green);
@@ -205,7 +177,6 @@
             box-shadow: 0 0 20px var(--mc-green);
         }
 
-
         /* --- NAVIGATION --- */
         nav {
             display: flex;
@@ -214,7 +185,7 @@
             flex-wrap: wrap;
             justify-content: center;
             position: sticky;
-            top: 0; /* Sticky starts at 0 */
+            top: 0;
             z-index: 1000; 
             width: 100%;   
             padding: 20px 0; 
@@ -222,7 +193,7 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            transition: top 0.3s ease-in-out; /* Smooth slide animation */
+            transition: top 0.3s ease-in-out; 
         }
 
         .mc-btn {
@@ -245,23 +216,11 @@
             line-height: 1;             
         }
 
-        .mc-btn i {
-            color: var(--neon-cyan);
-            font-size: 1.5rem; 
-            display: block;    
-        }
+        .mc-btn i { color: var(--neon-cyan); font-size: 1.5rem; display: block; }
+        .mc-btn:hover { background-color: #8c9dc3; border-color: #fff #222 #222 #fff; }
+        .mc-btn:active { border-color: #222 #fff #fff #222; background-color: #555; }
 
-        .mc-btn:hover {
-            background-color: #8c9dc3;
-            border-color: #fff #222 #222 #fff;
-        }
-
-        .mc-btn:active {
-            border-color: #222 #fff #fff #222;
-            background-color: #555;
-        }
-
-        /* --- GENERAL CONTAINER --- */
+        /* --- CONTAINER --- */
         .container {
             width: 90%;
             max-width: 900px;
@@ -275,7 +234,7 @@
             overflow: hidden; 
             scroll-margin-top: 130px; 
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-            border-radius: 20px;
+            border-radius: 20px; /* Rounded Edges */
         }
 
         .container:hover {
@@ -296,11 +255,7 @@
             align-items: center; 
             gap: 15px;
         }
-        
-        h2.section-title i {
-            color: var(--neon-cyan);
-            font-size: 2.2rem; 
-        }
+        h2.section-title i { color: var(--neon-cyan); font-size: 2.2rem; }
 
         .bio-text {
             color: #5cbd34;
@@ -310,7 +265,7 @@
             min-height: 50px; 
         }
 
-        /* --- EDUCATION SECTION STYLES --- */
+        /* --- EDUCATION --- */
         .edu-box {
             background-color: rgba(0, 0, 0, 0.5);
             border: 2px solid #333;
@@ -321,20 +276,12 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            position: relative; /* Needed for positioning logo */
-            overflow: hidden; /* Keeps logo inside box */
-        }
-        .edu-box:hover {
-            transform: translateY(-5px);
-            border-color: var(--neon-cyan);
-        }
-        /* Ensure Text is above the logo */
-        .edu-box h3, .edu-box p {
             position: relative;
-            z-index: 2;
+            overflow: hidden;
         }
+        .edu-box:hover { transform: translateY(-5px); border-color: var(--neon-cyan); }
+        .edu-box h3, .edu-box p { position: relative; z-index: 2; }
 
-        /* Logo Styling */
         .edu-logo {
             position: absolute;
             right: 20px;
@@ -342,43 +289,22 @@
             transform: translateY(-50%);
             height: 90px;
             width: auto;
-            opacity: 0.3; /* The Fade Effect */
+            opacity: 0.3;
             z-index: 1;
             pointer-events: none;
-            filter: grayscale(30%); /* Slight desaturation for blend */
+            filter: grayscale(30%);
         }
 
-        .edu-box.full-width {
-            width: 100%;
-        }
-        .full-width .edu-logo {
-            height: 130px; /* Larger logo for the bigger box */
-            opacity: 0.2; 
-            right: 40px;
-        }
+        .edu-box.full-width { width: 100%; }
+        .full-width .edu-logo { height: 130px; opacity: 0.2; right: 40px; }
 
-        .edu-row {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .edu-box.half-width {
-            flex: 1;
-            min-width: 300px;
-            margin-bottom: 0; 
-        }
-        .degree-title {
-            color: var(--neon-cyan);
-            font-size: 1.5rem;
-            margin: 0 0 5px 0;
-        }
-        .school-name {
-            color: #5cbd34;
-            font-size: 1.3rem;
-            margin: 0;
-        }
+        .edu-row { display: flex; gap: 20px; flex-wrap: wrap; }
+        .edu-box.half-width { flex: 1; min-width: 300px; margin-bottom: 0; }
+        
+        .degree-title { color: var(--neon-cyan); font-size: 1.5rem; margin: 0 0 5px 0; }
+        .school-name { color: #5cbd34; font-size: 1.3rem; margin: 0; }
 
-        /* --- SKILLS LIST --- */
+        /* --- SKILLS --- */
         .skill-list { list-style: none; padding: 0; font-size: 1.4rem; }
         .skill-item { margin-bottom: 10px; display: flex; justify-content: space-between; }
 
@@ -391,96 +317,62 @@
         .card-title { color: var(--neon-cyan); font-size: 1.5rem; margin: 0 0 10px 0; }
         .card-desc { color: #e0e0e0; font-size: 1rem; line-height: 1.4; margin-bottom: 20px; flex-grow: 1; }
         
-        /* --- ACCESS BUTTONS (REVERSED HOVER) --- */
+        /* ACCESS BUTTONS (Hover Reverse) */
         .access-btn { 
-            display: block; 
-            width: 100%; 
-            padding: 12px; 
-            text-align: center; 
-            border: 2px solid var(--neon-cyan); 
-            color: var(--neon-cyan); 
-            text-decoration: none; 
-            border-radius: 8px; 
-            font-size: 1.1rem; 
-            background: transparent; 
-            transition: all 0.2s; 
+            display: block; width: 100%; padding: 12px; text-align: center; border: 2px solid var(--neon-cyan); color: var(--neon-cyan); text-decoration: none; border-radius: 8px; font-size: 1.1rem; background: transparent; transition: all 0.2s; 
         }
-        
-        /* HOVER EFFECT: Solid Cyan Background, Black Text */
-        .access-btn:hover { 
-            background-color: var(--neon-cyan); 
-            color: #000000; 
-            box-shadow: 0 0 15px var(--neon-cyan); 
-        }
+        .access-btn:hover { background-color: var(--neon-cyan); color: #000000; box-shadow: 0 0 15px var(--neon-cyan); }
 
-        /* --- FORM --- */
+        /* --- FORM & SOCIAL --- */
         .mc-input { width: 100%; background: rgba(0, 0, 0, 0.5); border: 2px solid #555; color: white; padding: 15px; font-size: 1.2rem; font-family: 'Minecraft', monospace; outline: none; margin-bottom: 15px; transition: border-color 0.2s; }
         .mc-input:focus { border-color: #5cbd34; }
-        .mc-input::placeholder { color: #888; }
-
-        /* --- SOCIAL --- */
         .social-links { display: flex; gap: 20px; justify-content: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
         .social-btn { width: 50px; height: 50px; border: 2px solid #5cbd34; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); transition: all 0.3s ease; }
         .social-btn svg { width: 28px; height: 28px; fill: #ffff55; transition: all 0.3s ease; }
         .social-btn:hover { background-color: #5cbd34; box-shadow: 0 0 15px #5cbd34; transform: scale(1.1); }
         .social-btn:hover svg { fill: white; }
-
         footer { margin-bottom: 20px; color: #ccc; font-size: 1rem; text-shadow: 1px 1px 2px black; }
 
-        /* --- MOBILE OPTIMIZATIONS (MEDIA QUERIES) --- */
+        /* --- MOBILE OPTIMIZATION --- */
         @media screen and (max-width: 768px) {
-            /* General Layout */
-            body { padding: 0 10px; }
-            .container { width: 100%; padding: 15px; margin-bottom: 30px; }
+            /* 1. Nav BG Full Width Alignment */
+            body { padding: 0; }
+            .container { width: 90%; margin: 0 auto 30px auto; padding: 15px; }
 
-            /* Header Section */
-            h1 { font-size: 2.8rem; word-wrap: break-word; } /* Avoids overflow */
-            h2.subtitle { font-size: 1.2rem; min-height: auto; margin-bottom: 20px; }
+            /* 2. Header Adjustments */
+            header { padding: 0 15px; margin-top: 30px; }
+            h1 { font-size: 1.8rem; white-space: nowrap; } /* Force one line */
+            h2.subtitle { font-size: 1.1rem; min-height: auto; margin-bottom: 20px; }
             .profile-pic { width: 150px; height: 150px; }
 
-            /* Hero Buttons */
+            /* 3. Stack Buttons */
             .hero-buttons { flex-direction: column; width: 100%; gap: 15px; }
             .hero-btn { width: 100%; justify-content: center; padding: 12px 0; }
 
-            /* Navbar */
-            nav { gap: 10px; padding: 15px 5px; }
+            /* 4. Nav Grid Layout */
+            nav { width: 100%; gap: 10px; padding: 15px 5px; left: 0; right: 0; }
             .mc-btn { 
                 font-size: 0.9rem; 
                 min-width: auto; 
                 padding: 0 10px; 
                 height: 40px; 
-                flex: 1 1 45%; /* Grid layout for nav buttons */
+                flex: 1 1 40%; 
             }
 
-            /* Education Section */
-            .edu-row { flex-direction: column; gap: 15px; }
-            .edu-box { text-align: center; padding: 20px; }
-            .edu-box.half-width { min-width: 100%; }
-            .degree-title { font-size: 1.3rem; }
+            /* 5. Content Stacking */
+            .edu-row, .projects-wrapper { flex-direction: column; gap: 15px; }
+            .edu-box, .game-card { width: 100%; min-width: 100%; text-align: center; }
             
-            /* Logo Adjustments for Mobile */
+            /* Mobile Logos */
             .edu-logo { 
-                height: 60px; 
-                opacity: 0.15; /* More faded so text is legible */
-                right: 50%;
-                top: 50%;
-                transform: translate(50%, -50%); /* Centered background */
+                height: 60px; opacity: 0.15; 
+                right: 50%; top: 50%; 
+                transform: translate(50%, -50%); 
             }
             .full-width .edu-logo { height: 80px; right: 50%; transform: translate(50%, -50%); }
 
-            /* Skills */
             .skill-item { font-size: 1rem; flex-direction: column; align-items: flex-start; gap: 5px; }
             .skill-item span:last-child { align-self: flex-end; }
-
-            /* Projects */
-            .projects-wrapper { flex-direction: column; }
-            .game-card { width: 100%; min-width: 100%; }
-            .card-img { height: 180px; }
-
-            /* Contact & Footer */
-            .social-links { gap: 15px; }
-            .social-btn { width: 45px; height: 45px; }
-            footer { font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -620,125 +512,126 @@
             </a>
             <a href="https://www.instagram.com/awwabalimirza/" target="_blank" class="social-btn">
                 <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
-        </div>
-    </div>
+            </a>
+        </div>
+    </div>
 
-    <footer>
-        <p>© 2026 Awwab Ali Mirza. All Rights Reserved.</p>
-    </footer>
+    <footer>
+        <p>© 2026 Awwab Ali Mirza. All Rights Reserved.</p>
+    </footer>
 
-    <script>
-        // --- 1. ABOUT ME TYPEWRITER ---
-        const aboutMeText = "I AM AN ASPIRING AI ENGINEER AND COMPUTER SCIENTIST CURRENTLY PURSUING MY BACHELORS AT THE NATIONAL UNIVERSITY OF COMPUTER AND EMERGING SCIENCES.<br>MY JOURNEY INTO TECH IS UNIQUE. I CAME FROM A BACKGROUND WITH ABSOLUTELY ZERO CODING EXPERIENCE. HOWEVER, DIVING INTO C++ COMPLETELY TRANSFORMED MY WORLDVIEW. I WENT FROM BEING A PASSIVE USER OF TECHNOLOGY TO AN ACTIVE CREATOR AND INNOVATOR.";
-        const typeContainer = document.getElementById('typewriter-text');
-        let typeIndex = 0;
+    <script>
+        // --- 1. ABOUT ME TYPEWRITER ---
+        const aboutMeText = "I AM AN ASPIRING AI ENGINEER AND COMPUTER SCIENTIST CURRENTLY PURSUING MY BACHELORS AT THE NATIONAL UNIVERSITY OF COMPUTER AND EMERGING SCIENCES.<br>MY JOURNEY INTO TECH IS UNIQUE. I CAME FROM A BACKGROUND WITH ABSOLUTELY ZERO CODING EXPERIENCE. HOWEVER, DIVING INTO C++ COMPLETELY TRANSFORMED MY WORLDVIEW. I WENT FROM BEING A PASSIVE USER OF TECHNOLOGY TO AN ACTIVE CREATOR AND INNOVATOR.";
+        const typeContainer = document.getElementById('typewriter-text');
+        let typeIndex = 0;
 
-        function typeWriter() {
-            if (typeIndex < aboutMeText.length) {
-                if (aboutMeText.substring(typeIndex, typeIndex + 4) === "<br>") {
-                    typeContainer.innerHTML += "<br>";
-                    typeIndex += 4;
-                } else {
-                    typeContainer.innerHTML += aboutMeText.charAt(typeIndex);
-                    typeIndex++;
-                }
-                setTimeout(typeWriter, 75); // Speed set to 75 as requested earlier
-            }
-        }
+        function typeWriter() {
+            if (typeIndex < aboutMeText.length) {
+                if (aboutMeText.substring(typeIndex, typeIndex + 4) === "<br>") {
+                    typeContainer.innerHTML += "<br>";
+                    typeIndex += 4;
+                } else {
+                    typeContainer.innerHTML += aboutMeText.charAt(typeIndex);
+                    typeIndex++;
+                }
+                setTimeout(typeWriter, 75); // Speed set to 75 as requested earlier
+            }
+        }
 
-        // --- 2. HEADER TEXT SCRAMBLER/TYPER ---
-        const headerTexts = ["BSAI STUDENT", "PROBLEM SOLVER", "FRONT END DEVELOPER"];
-        let headerCount = 0;
-        let headerIndex = 0;
-        let currentHeaderText = "";
-        let headerLetter = "";
-        let isDeleting = false;
+        // --- 2. HEADER TEXT SCRAMBLER/TYPER ---
+        const headerTexts = ["BSAI STUDENT", "PROBLEM SOLVER", "FRONT END DEVELOPER"];
+        let headerCount = 0;
+        let headerIndex = 0;
+        let currentHeaderText = "";
+        let headerLetter = "";
+        let isDeleting = false;
 
-        function headerTypewriter() {
-            if (headerCount === headerTexts.length) {
-                headerCount = 0;
-            }
-            currentHeaderText = headerTexts[headerCount];
+        function headerTypewriter() {
+            if (headerCount === headerTexts.length) {
+                headerCount = 0;
+            }
+            currentHeaderText = headerTexts[headerCount];
 
-            if (isDeleting) {
-                headerLetter = currentHeaderText.slice(0, --headerIndex);
-            } else {
-                headerLetter = currentHeaderText.slice(0, ++headerIndex);
-            }
+            if (isDeleting) {
+                headerLetter = currentHeaderText.slice(0, --headerIndex);
+            } else {
+                headerLetter = currentHeaderText.slice(0, ++headerIndex);
+            }
 
-            document.querySelector('.typing-text').textContent = headerLetter;
+            document.querySelector('.typing-text').textContent = headerLetter;
 
-            let typeSpeed = 100;
-            if (isDeleting) typeSpeed = 50;
+            let typeSpeed = 100;
+            if (isDeleting) typeSpeed = 50;
 
-            if (!isDeleting && headerLetter.length === currentHeaderText.length) {
-                typeSpeed = 2000; 
-                isDeleting = true;
-            } else if (isDeleting && headerLetter.length === 0) {
-                isDeleting = false;
-                headerCount++;
-                typeSpeed = 500;
-            }
+            if (!isDeleting && headerLetter.length === currentHeaderText.length) {
+                typeSpeed = 2000; 
+                isDeleting = true;
+            } else if (isDeleting && headerLetter.length === 0) {
+                isDeleting = false;
+                headerCount++;
+                typeSpeed = 500;
+            }
 
-            setTimeout(headerTypewriter, typeSpeed);
-        }
+            setTimeout(headerTypewriter, typeSpeed);
+        }
 
-        window.onload = function() {
-            typeWriter(); 
-            headerTypewriter(); 
-        };
+        window.onload = function() {
+            typeWriter(); 
+            headerTypewriter(); 
+        };
 
-        // --- 3. SMART NAVBAR LOGIC (NEW) ---
-        let lastScrollTop = 0;
-        const navbar = document.querySelector('nav');
+        // --- 3. SMART NAVBAR LOGIC (UPDATED FOR DYNAMIC HEIGHT) ---
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('nav');
 
-        window.addEventListener('scroll', function() {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            // Fix for Mobile "bounce" scroll
-            if (scrollTop < 0) return;
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Fix for Mobile "bounce" scroll
+            if (scrollTop < 0) return;
 
-            if (scrollTop > lastScrollTop) {
-                // Scroll Down -> Hide Nav (move up)
-                navbar.style.top = "-120px"; // Hides 120px up
-            } else {
-                // Scroll Up -> Show Nav
-                navbar.style.top = "0";
-            }
-            lastScrollTop = scrollTop;
-        });
+            if (scrollTop > lastScrollTop) {
+                // Scroll Down -> Hide Nav (dynamic height)
+                // We use offsetHeight to know exactly how tall the nav is (buttons wrapped)
+                navbar.style.top = `-${navbar.offsetHeight}px`; 
+            } else {
+                // Scroll Up -> Show Nav
+                navbar.style.top = "0";
+            }
+            lastScrollTop = scrollTop;
+        });
 
-        // --- FORM HANDLING ---
-        var form = document.getElementById("contact-form");
+        // --- FORM HANDLING ---
+        var form = document.getElementById("contact-form");
 
-        async function handleSubmit(event) {
-            event.preventDefault();
-            var data = new FormData(event.target);
-            fetch(event.target.action, {
-                method: form.method,
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    alert("Thanks! Your message has been sent to Awwab.");
-                    form.reset();
-                } else {
-                    response.json().then(data => {
-                        if (Object.hasOwn(data, 'errors')) {
-                            alert(data["errors"].map(error => error["message"]).join(", "));
-                        } else {
-                            alert("Oops! There was a problem submitting your form");
-                        }
-                    })
-                }
-            }).catch(error => {
-                alert("Oops! There was a problem submitting your form");
-            });
-        }
-        form.addEventListener("submit", handleSubmit);
-    </script>
+        async function handleSubmit(event) {
+            event.preventDefault();
+            var data = new FormData(event.target);
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    alert("Thanks! Your message has been sent to Awwab.");
+                    form.reset();
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            alert(data["errors"].map(error => error["message"]).join(", "));
+                        } else {
+                            alert("Oops! There was a problem submitting your form");
+                        }
+                    })
+                }
+            }).catch(error => {
+                alert("Oops! There was a problem submitting your form");
+            });
+        }
+        form.addEventListener("submit", handleSubmit);
+    </script>
 </body>
 </html>
