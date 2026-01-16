@@ -207,15 +207,16 @@
             margin-bottom: 40px;
             flex-wrap: wrap;
             justify-content: center;
-      
-            top: 0;
+            position: sticky;
+            top: 0; /* Sticky starts at 0 */
             z-index: 1000; 
             width: 100%;   
             padding: 20px 0; 
-         
+            background: rgba(0, 0, 0, 0.6); 
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            transition: top 0.3s ease-in-out; /* Smooth slide animation */
         }
 
         .mc-btn {
@@ -472,7 +473,7 @@
         
         <div class="edu-box full-width">
             <h3 class="degree-title">BACHELORS IN ARTIFICIAL INTELLIGENCE</h3>
-            <p class="school-name">FAST NUCES</p>
+            <p class="school-name">FAST (NUCES)</p>
             <p style="color: #888; margin-top: 5px;">2025 - Present</p>
             <img src="1.png" class="edu-logo" alt="FAST Logo">
         </div>
@@ -624,6 +625,26 @@
             typeWriter(); 
             headerTypewriter(); 
         };
+
+        // --- 3. SMART NAVBAR LOGIC (NEW) ---
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('nav');
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Fix for Mobile "bounce" scroll
+            if (scrollTop < 0) return;
+
+            if (scrollTop > lastScrollTop) {
+                // Scroll Down -> Hide Nav (move up)
+                navbar.style.top = "-120px"; // Hides 120px up
+            } else {
+                // Scroll Up -> Show Nav
+                navbar.style.top = "0";
+            }
+            lastScrollTop = scrollTop;
+        });
 
         // --- FORM HANDLING ---
         var form = document.getElementById("contact-form");
