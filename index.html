@@ -23,7 +23,7 @@
             --mc-green: #5cbd34;
             --mc-dirt: #3f2713;
             --neon-cyan: #00ffff;
-            --mc-yellow: #ffff55; /* Added Minecraft Yellow for the typing effect */
+            --mc-yellow: #ffff55;
         }
 
         /* --- CUSTOM SCROLLBAR FIXED --- */
@@ -48,7 +48,7 @@
         
         /* THE FIX: Set background to dark so the "white bar" disappears */
         html { 
-            background-color: #101010; /* Changes browser base from White to Dark */
+            background-color: #101010;
             scrollbar-color: #5cbd34 transparent; 
             scrollbar-width: auto; 
             scroll-behavior: smooth; 
@@ -125,10 +125,9 @@
             font-size: 2rem;
             color: #aaaaaa;
             margin-top: 5px;
-            min-height: 2.4rem; /* Keeps layout stable during typing */
+            min-height: 2.4rem;
         }
 
-        /* NEW STYLES FOR TYPING EFFECT */
         .typing-text {
             color: var(--mc-yellow);
             text-shadow: 2px 2px #000;
@@ -246,6 +245,74 @@
             min-height: 50px; 
         }
 
+        /* --- EDUCATION SECTION STYLES --- */
+        .edu-box {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 2px solid #333;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: transform 0.2s, border-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative; /* Needed for positioning logo */
+            overflow: hidden; /* Keeps logo inside box */
+        }
+        .edu-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-cyan);
+        }
+        /* Ensure Text is above the logo */
+        .edu-box h3, .edu-box p {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Logo Styling */
+        .edu-logo {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 90px;
+            width: auto;
+            opacity: 0.3; /* The Fade Effect */
+            z-index: 1;
+            pointer-events: none;
+            filter: grayscale(30%); /* Slight desaturation for blend */
+        }
+
+        .edu-box.full-width {
+            width: 100%;
+        }
+        .full-width .edu-logo {
+            height: 130px; /* Larger logo for the bigger box */
+            opacity: 0.2; 
+            right: 40px;
+        }
+
+        .edu-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .edu-box.half-width {
+            flex: 1;
+            min-width: 300px;
+            margin-bottom: 0; 
+        }
+        .degree-title {
+            color: var(--neon-cyan);
+            font-size: 1.5rem;
+            margin: 0 0 5px 0;
+        }
+        .school-name {
+            color: #5cbd34;
+            font-size: 1.3rem;
+            margin: 0;
+        }
+
         /* --- SKILLS LIST --- */
         .skill-list { list-style: none; padding: 0; font-size: 1.4rem; }
         .skill-item { margin-bottom: 10px; display: flex; justify-content: space-between; }
@@ -294,7 +361,7 @@
     <nav>
         <a href="#" class="mc-btn"><i class='bx bx-home-alt-2'></i> HOME</a> 
         <a href="#home" class="mc-btn"><i class='bx bx-user-circle'></i> ABOUT</a>
-         <a href="#home" class="mc-btn"><i class='bx bx-user-circle'></i> EDUCATION</a>
+        <a href="#education" class="mc-btn"><i class='bx bxs-graduation'></i> EDUCATION</a>
         <a href="#skills" class="mc-btn"><i class='bx bx-chip'></i> SKILLS</a>
         <a href="#projects" class="mc-btn"><i class='bx bx-folder-open'></i> PROJECTS</a>
         <a href="#goals" class="mc-btn"><i class='bx bx-target-lock'></i> GOALS</a>
@@ -313,13 +380,38 @@
                 <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
             </a>
             <a href="https://www.instagram.com/awwabalimirza/" target="_blank" class="social-btn">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
         </div>
     </div>
-     <div class="container" id="home">
-        <h2 class="section-title"><i class='bx bx-user-circle'></i> EDUCATION</h2>
+
+    <div class="container" id="education">
+        <h2 class="section-title"><i class='bx bxs-graduation'></i> EDUCATION</h2>
+        
+        <div class="edu-box full-width">
+            <h3 class="degree-title">BACHELORS IN ARTIFICIAL INTELLIGENCE</h3>
+            <p class="school-name">FAST (NUCES)</p>
+            <p style="color: #888; margin-top: 5px;">2025 - Present</p>
+            <img src="1.png" class="edu-logo" alt="FAST Logo">
         </div>
+
+        <div class="edu-row">
+            <div class="edu-box half-width">
+                <h3 class="degree-title">INTERMEDIATE</h3>
+                <p class="school-name">PUNJAB COLLEGE</p>
+                 <p style="color: #888; margin-top: 5px;">2023-2025</p>
+                 <img src="3.png" class="edu-logo" alt="Punjab College Logo" style="border-radius: 10px;" >
+            </div>
+            
+            <div class="edu-box half-width">
+                <h3 class="degree-title">MATRICULATION</h3>
+                <p class="school-name">SLS</p>
+                 <p style="color: #888; margin-top: 5px;">2023</p>
+                 <img src="4.png" class="edu-logo" alt="SLS Logo" style="border-radius: 10px;">
+            </div>
+        </div>
+    </div>
+
     <div class="container" id="skills">
         <h2 class="section-title"><i class='bx bx-chip'></i> SKILLS AND CAPABILITIES</h2>
         <ul class="skill-list">
@@ -381,7 +473,7 @@
                 <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
             </a>
             <a href="https://www.instagram.com/awwabalimirza/" target="_blank" class="social-btn">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
         </div>
     </div>
@@ -391,7 +483,7 @@
     </footer>
 
     <script>
-        // --- 1. ABOUT ME TYPEWRITER (ORIGINAL) ---
+        // --- 1. ABOUT ME TYPEWRITER ---
         const aboutMeText = "I AM AN ASPIRING AI ENGINEER AND COMPUTER SCIENTIST CURRENTLY PURSUING MY BACHELORS AT THE NATIONAL UNIVERSITY OF COMPUTER AND EMERGING SCIENCES.<br>MY JOURNEY INTO TECH IS UNIQUE. I CAME FROM A BACKGROUND WITH ABSOLUTELY ZERO CODING EXPERIENCE. HOWEVER, DIVING INTO C++ COMPLETELY TRANSFORMED MY WORLDVIEW. I WENT FROM BEING A PASSIVE USER OF TECHNOLOGY TO AN ACTIVE CREATOR AND INNOVATOR.";
         const typeContainer = document.getElementById('typewriter-text');
         let typeIndex = 0;
@@ -405,22 +497,21 @@
                     typeContainer.innerHTML += aboutMeText.charAt(typeIndex);
                     typeIndex++;
                 }
-                // SPEED CHANGED HERE (30 -> 75)
-                setTimeout(typeWriter, 75);
+                setTimeout(typeWriter, 75); // Speed set to 75 as requested earlier
             }
         }
 
-        // --- 2. HEADER TEXT SCRAMBLER/TYPER (NEW) ---
+        // --- 2. HEADER TEXT SCRAMBLER/TYPER ---
         const headerTexts = ["BSAI STUDENT", "PROBLEM SOLVER", "FRONT END DEVELOPER"];
-        let headerCount = 0; // Index of current phrase
-        let headerIndex = 0; // Index of current character
+        let headerCount = 0;
+        let headerIndex = 0;
         let currentHeaderText = "";
         let headerLetter = "";
         let isDeleting = false;
 
         function headerTypewriter() {
             if (headerCount === headerTexts.length) {
-                headerCount = 0; // Loop back to start
+                headerCount = 0;
             }
             currentHeaderText = headerTexts[headerCount];
 
@@ -432,16 +523,13 @@
 
             document.querySelector('.typing-text').textContent = headerLetter;
 
-            // Typing Speed Control
             let typeSpeed = 100;
-            if (isDeleting) typeSpeed = 50; // Delete faster than type
+            if (isDeleting) typeSpeed = 50;
 
             if (!isDeleting && headerLetter.length === currentHeaderText.length) {
-                // Phrase complete - wait before deleting
                 typeSpeed = 2000; 
                 isDeleting = true;
             } else if (isDeleting && headerLetter.length === 0) {
-                // Deletion complete - move to next phrase
                 isDeleting = false;
                 headerCount++;
                 typeSpeed = 500;
@@ -450,10 +538,9 @@
             setTimeout(headerTypewriter, typeSpeed);
         }
 
-        // --- INITIALIZATION ---
         window.onload = function() {
-            typeWriter(); // Start About Me typewriter
-            headerTypewriter(); // Start Header text typewriter
+            typeWriter(); 
+            headerTypewriter(); 
         };
 
         // --- FORM HANDLING ---
