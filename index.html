@@ -20,7 +20,7 @@
             --mc-btn-shadow: #3b3b3b;
             --mc-btn-light: #d9d9d9;
             --mc-text-shadow: 2px 2px #000;
-            --mc-green: #5cbd34;
+            --mc-green: #5cbd34; /* Main Theme Color */
             --mc-dirt: #3f2713;
             --neon-cyan: #00ffff;
             --mc-yellow: #ffff55;
@@ -154,6 +154,8 @@
             justify-content: center;
             gap: 10px;
             transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: visible;
         }
 
         .hero-btn.primary {
@@ -177,11 +179,50 @@
             box-shadow: 0 0 20px var(--mc-green);
         }
 
+        /* Slice Animation Classes */
+        .hero-btn.sliced {
+            color: transparent !important;
+            background-color: transparent !important;
+            border-color: transparent !important;
+            box-shadow: none !important;
+            pointer-events: none;
+        }
+        .hero-btn.sliced::before, .hero-btn.sliced::after {
+            content: attr(data-content);
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 12px; border: 2px solid; font-weight: bold; box-sizing: border-box;
+        }
+        .hero-btn.primary.sliced::before, .hero-btn.primary.sliced::after {
+            background-color: var(--mc-green); color: black; border-color: var(--mc-green);
+        }
+        .hero-btn.secondary.sliced::before, .hero-btn.secondary.sliced::after {
+            background-color: black; color: var(--mc-green); border-color: var(--mc-green);
+        }
+        .hero-btn.sliced::before {
+            clip-path: polygon(0 0, 100% 0, 0 100%);
+            animation: sliceTop 0.5s ease-in-out forwards;
+        }
+        .hero-btn.sliced::after {
+            clip-path: polygon(100% 0, 100% 100%, 0 100%);
+            animation: sliceBottom 0.5s ease-in-out forwards;
+        }
+        @keyframes sliceTop {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-10px, -10px); opacity: 0.8; }
+            100% { transform: translate(0, 0); opacity: 1; }
+        }
+        @keyframes sliceBottom {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(10px, 10px); opacity: 0.8; }
+            100% { transform: translate(0, 0); opacity: 1; }
+        }
+
         /* --- NAVIGATION --- */
         nav {
             display: flex;
             gap: 15px;
-            margin-bottom: 40px;
+            margin-bottom: 50px; /* DESKTOP: Match container margin */
             flex-wrap: wrap;
             justify-content: center;
             position: sticky;
@@ -229,7 +270,7 @@
             -webkit-backdrop-filter: blur(10px); 
             border: 2px solid rgba(255, 255, 255, 0.1);
             padding: 20px;
-            margin-bottom: 50px;
+            margin-bottom: 50px; /* DESKTOP: Match nav margin */
             height: auto;
             overflow: hidden; 
             scroll-margin-top: 130px; 
@@ -357,18 +398,17 @@
         @media screen and (max-width: 768px) {
             /* General Layout */
             body { padding: 0; }
-            /* Adjusted container to fit screen well */
-            .container { width: 92%; margin: 0 auto 30px auto; padding: 15px; }
+            .container { 
+                width: 90%; 
+                margin: 0 auto 30px auto; /* Bottom margin: 30px */
+                padding: 15px; 
+            }
 
             /* Header Section */
             header { padding: 0 15px; margin-top: 30px; }
             
-            /* NAME SCALES LARGE AND ONE LINE */
-            h1 { 
-                font-size: 10vw; /* Very large but responsive */
-                white-space: nowrap; 
-                line-height: 1.2;
-            } 
+            /* NAME SCALES WITH SCREEN WIDTH */
+            h1 { font-size: 10vw; white-space: nowrap; line-height: 1.2; } 
             
             h2.subtitle { font-size: 1.1rem; min-height: auto; margin-bottom: 20px; }
             .profile-pic { width: 150px; height: 150px; }
@@ -377,7 +417,7 @@
             .hero-buttons { flex-direction: column; width: 100%; gap: 15px; }
             .hero-btn { width: 100%; justify-content: center; padding: 12px 0; }
 
-            /* Navbar - Full Width & Clean Background */
+            /* Navbar */
             nav { 
                 width: 100%; 
                 gap: 10px; 
@@ -385,7 +425,8 @@
                 left: 0; 
                 right: 0; 
                 margin: 0; 
-                box-sizing: border-box; /* Prevent overflow */
+                margin-bottom: 30px; /* MOBILE: Matches container spacing */
+                box-sizing: border-box; 
             }
             
             .mc-btn { 
@@ -418,8 +459,8 @@
             /* Skills - FORCE ROW ALIGNMENT (Mobile Fix) */
             .skill-item { 
                 font-size: 1rem; 
-                flex-direction: row !important; /* Force side-by-side */
-                justify-content: space-between; /* Spread items */
+                flex-direction: row !important; 
+                justify-content: space-between; 
                 align-items: center; 
                 gap: 10px; 
                 width: 100%;
@@ -449,8 +490,12 @@
         <h2 class="subtitle">I'm a <span class="typing-text"></span><span class="cursor-blink">|</span></h2>
         
         <div class="hero-buttons">
-            <a href="#projects" class="hero-btn primary">FEATURED WORK <i class='bx bx-right-arrow-alt'></i></a>
-            <a href="#contact" class="hero-btn secondary">LET'S COLLABORATE <i class='bx bx-paper-plane'></i></a>
+            <a href="#projects" class="hero-btn primary" data-content="FEATURED WORK">
+                FEATURED WORK <i class='bx bx-right-arrow-alt'></i>
+            </a>
+            <a href="#contact" class="hero-btn secondary" data-content="LET'S COLLABORATE">
+                LET'S COLLABORATE <i class='bx bx-paper-plane'></i>
+            </a>
         </div>
     </header>
 
@@ -639,26 +684,46 @@
             headerTypewriter(); 
         };
 
-        // --- 3. SMART NAVBAR LOGIC (UPDATED FOR DYNAMIC HEIGHT) ---
+        // --- 3. SMART NAVBAR LOGIC ---
         let lastScrollTop = 0;
         const navbar = document.querySelector('nav');
 
         window.addEventListener('scroll', function() {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             
-            // Fix for Mobile "bounce" scroll
             if (scrollTop < 0) return;
 
             if (scrollTop > lastScrollTop) {
-                // Scroll Down -> Hide Nav (dynamic height)
-                // We use offsetHeight to know exactly how tall the nav is (buttons wrapped)
                 navbar.style.top = `-${navbar.offsetHeight}px`; 
             } else {
-                // Scroll Up -> Show Nav
                 navbar.style.top = "0";
             }
             lastScrollTop = scrollTop;
         });
+
+        // --- 4. BUTTON SLICE EFFECT (NEW) ---
+        const heroBtns = document.querySelectorAll('.hero-btn');
+
+        heroBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // If it's already slicing, do nothing to prevent spam
+                if(this.classList.contains('sliced')) return;
+
+                // Add class to trigger animation
+                this.classList.add('sliced');
+
+                // Optional: If you want to delay navigation until animation completes:
+                // e.preventDefault(); 
+                // const href = this.getAttribute('href');
+                
+                // Remove class after animation (0.5s) to "heal" the button
+                setTimeout(() => {
+                    this.classList.remove('sliced');
+                    // if prevented default, navigate now: window.location.href = href;
+                }, 500); 
+            });
+        });
+
 
         // --- FORM HANDLING ---
         var form = document.getElementById("contact-form");
