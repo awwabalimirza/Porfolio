@@ -90,6 +90,7 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scroll on mobile */
         }
 
         /* --- HEADER --- */
@@ -101,6 +102,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 100%;
+            padding: 0 15px; /* Add padding for mobile */
         }
 
         .profile-pic {
@@ -130,6 +133,7 @@
             color: #dcdcdc;
             text-shadow: 4px 4px 0px #3f3f3f;
             letter-spacing: 2px;
+            line-height: 1.1; /* Better spacing on mobile lines */
         }
         
         h2.subtitle {
@@ -162,6 +166,7 @@
             gap: 20px;
             justify-content: center;
             margin-top: 10px;
+            flex-wrap: wrap; /* Allow wrapping on mobile */
         }
 
         .hero-btn {
@@ -172,6 +177,7 @@
             font-weight: bold;
             display: flex;
             align-items: center;
+            justify-content: center; /* Center content on mobile */
             gap: 10px;
             transition: transform 0.2s, box-shadow 0.2s;
         }
@@ -420,6 +426,62 @@
         .social-btn:hover svg { fill: white; }
 
         footer { margin-bottom: 20px; color: #ccc; font-size: 1rem; text-shadow: 1px 1px 2px black; }
+
+        /* --- MOBILE OPTIMIZATIONS (MEDIA QUERIES) --- */
+        @media screen and (max-width: 768px) {
+            /* General Layout */
+            body { padding: 0 10px; }
+            .container { width: 100%; padding: 15px; margin-bottom: 30px; }
+
+            /* Header Section */
+            h1 { font-size: 2.8rem; word-wrap: break-word; } /* Avoids overflow */
+            h2.subtitle { font-size: 1.2rem; min-height: auto; margin-bottom: 20px; }
+            .profile-pic { width: 150px; height: 150px; }
+
+            /* Hero Buttons */
+            .hero-buttons { flex-direction: column; width: 100%; gap: 15px; }
+            .hero-btn { width: 100%; justify-content: center; padding: 12px 0; }
+
+            /* Navbar */
+            nav { gap: 10px; padding: 15px 5px; }
+            .mc-btn { 
+                font-size: 0.9rem; 
+                min-width: auto; 
+                padding: 0 10px; 
+                height: 40px; 
+                flex: 1 1 45%; /* Grid layout for nav buttons */
+            }
+
+            /* Education Section */
+            .edu-row { flex-direction: column; gap: 15px; }
+            .edu-box { text-align: center; padding: 20px; }
+            .edu-box.half-width { min-width: 100%; }
+            .degree-title { font-size: 1.3rem; }
+            
+            /* Logo Adjustments for Mobile */
+            .edu-logo { 
+                height: 60px; 
+                opacity: 0.15; /* More faded so text is legible */
+                right: 50%;
+                top: 50%;
+                transform: translate(50%, -50%); /* Centered background */
+            }
+            .full-width .edu-logo { height: 80px; right: 50%; transform: translate(50%, -50%); }
+
+            /* Skills */
+            .skill-item { font-size: 1rem; flex-direction: column; align-items: flex-start; gap: 5px; }
+            .skill-item span:last-child { align-self: flex-end; }
+
+            /* Projects */
+            .projects-wrapper { flex-direction: column; }
+            .game-card { width: 100%; min-width: 100%; }
+            .card-img { height: 180px; }
+
+            /* Contact & Footer */
+            .social-links { gap: 15px; }
+            .social-btn { width: 45px; height: 45px; }
+            footer { font-size: 0.8rem; }
+        }
     </style>
 </head>
 <body>
