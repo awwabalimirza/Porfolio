@@ -106,7 +106,7 @@
             object-fit: cover;
             border-radius: 50%;
             border: 4px solid #ffffff;
-            /* GLOW EFFECT ADDED BELOW */
+            /* GLOW EFFECT */
             box-shadow: 0 0 25px var(--neon-cyan), 0 0 10px rgba(0,0,0,0.5);
             margin-bottom: 15px;
             display: block;
@@ -333,8 +333,28 @@
         .card-content { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
         .card-title { color: var(--neon-cyan); font-size: 1.5rem; margin: 0 0 10px 0; }
         .card-desc { color: #e0e0e0; font-size: 1rem; line-height: 1.4; margin-bottom: 20px; flex-grow: 1; }
-        .access-btn { display: block; width: 100%; padding: 12px; text-align: center; border: 2px solid var(--neon-cyan); color: var(--neon-cyan); text-decoration: none; border-radius: 8px; font-size: 1.1rem; background: transparent; transition: all 0.2s; }
-        .access-btn:hover { background: rgba(0, 255, 255, 0.2); box-shadow: 0 0 10px var(--neon-cyan); }
+        
+        /* --- ACCESS BUTTONS (REVERSED HOVER) --- */
+        .access-btn { 
+            display: block; 
+            width: 100%; 
+            padding: 12px; 
+            text-align: center; 
+            border: 2px solid var(--neon-cyan); 
+            color: var(--neon-cyan); 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-size: 1.1rem; 
+            background: transparent; 
+            transition: all 0.2s; 
+        }
+        
+        /* HOVER EFFECT: Solid Cyan Background, Black Text */
+        .access-btn:hover { 
+            background-color: var(--neon-cyan); 
+            color: #000000; 
+            box-shadow: 0 0 15px var(--neon-cyan); 
+        }
 
         /* --- FORM --- */
         .mc-input { width: 100%; background: rgba(0, 0, 0, 0.5); border: 2px solid #555; color: white; padding: 15px; font-size: 1.2rem; font-family: 'Minecraft', monospace; outline: none; margin-bottom: 15px; transition: border-color 0.2s; }
@@ -438,7 +458,7 @@
                 <div class="card-content">
                     <h3 class="card-title">A COMMUNITY WEBSITE </h3>
                     <p class="card-desc">A website created to bring together enthusiasts from various fields to share knowledge, collaborate on projects, and foster a sense of community.</p>
-                    <a href="https://communitynews.vercel.app/" class="access-btn">ACCESS DATA</a>
+                    <a href="https://communitynews.vercel.app/" class="access-btn">CHECK OUT</a>
                 </div>
             </div>
             <div class="game-card">
@@ -446,7 +466,7 @@
                 <div class="card-content">
                     <h3 class="card-title">COMING SOON</h3>
                     <p class="card-desc"></p>
-                    <a href="#" class="access-btn">ACCESS DATA</a>
+                    <a href="#" class="access-btn">CHECK OUT</a>
                 </div>
             </div>
         </div>
