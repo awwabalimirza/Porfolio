@@ -326,7 +326,6 @@
         /* --- FORM --- */
         .mc-input { width: 100%; background: rgba(0, 0, 0, 0.5); border: 2px solid #555; color: white; padding: 15px; font-size: 1.2rem; font-family: 'Minecraft', monospace; outline: none; margin-bottom: 15px; transition: border-color 0.2s; }
         .mc-input:focus { border-color: #5cbd34; }
-        .mc-input::placeholder { color: #888; }
 
         /* --- SOCIAL LINKS --- */
         .social-links { 
@@ -363,8 +362,12 @@
             /* Header Section */
             header { padding: 0 15px; margin-top: 30px; }
             
-            /* INCREASED NAME SIZE FOR MOBILE */
-            h1 { font-size: 2.5rem; line-height: 1.1; } 
+            /* NAME SCALES WITH SCREEN WIDTH */
+            h1 { 
+                font-size: 8vw; /* Large and responsive */
+                white-space: nowrap; 
+                line-height: 1.2;
+            } 
             
             h2.subtitle { font-size: 1.1rem; min-height: auto; margin-bottom: 20px; }
             .profile-pic { width: 150px; height: 150px; }
@@ -373,8 +376,16 @@
             .hero-buttons { flex-direction: column; width: 100%; gap: 15px; }
             .hero-btn { width: 100%; justify-content: center; padding: 12px 0; }
 
-            /* Navbar */
-            nav { width: 100%; gap: 10px; padding: 15px 5px; left: 0; right: 0; }
+            /* Navbar - Full Width & Clean Background */
+            nav { 
+                width: 100%; 
+                gap: 10px; 
+                padding: 15px 5px; 
+                left: 0; 
+                right: 0; 
+                margin: 0; 
+            }
+            
             .mc-btn { 
                 font-size: 0.9rem; 
                 min-width: auto; 
@@ -402,20 +413,21 @@
             .game-card { width: 100%; min-width: 100%; }
             .card-img { height: 180px; }
 
-            /* Skills */
-            .skill-item { font-size: 1rem; flex-direction: column; align-items: flex-start; gap: 5px; }
-            .skill-item span:last-child { align-self: flex-end; }
-
-            /* CONTACT LOGOS ALIGNMENT (Mobile Specific) */
-            .social-links { 
-                gap: 25px; /* More space between icons */
-                padding-bottom: 10px;
-                justify-content: center; 
-                align-items: center;
-                margin-top: 30px; /* Space from button */
+            /* Skills - FORCE ROW ALIGNMENT (Mobile Fix) */
+            .skill-item { 
+                font-size: 1rem; 
+                flex-direction: row; /* KEEP AS ROW */
+                justify-content: space-between; /* Push items to edges */
+                align-items: center; 
+                gap: 10px; 
+                width: 100%;
             }
-            .social-btn { width: 50px; height: 50px; } /* Keep touch target good size */
-            
+            .skill-item span:first-child { text-align: left; }
+            .skill-item span:last-child { text-align: right; }
+
+            /* Contact & Footer */
+            .social-links { gap: 25px; margin-top: 30px; }
+            .social-btn { width: 50px; height: 50px; }
             footer { font-size: 0.8rem; }
         }
     </style>
@@ -461,8 +473,8 @@
             <a href="https://www.linkedin.com/in/awwab-ali-mirza-012435352/" target="_blank" class="social-btn">
                 <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
             </a>
-            <a href="https://www.instagram.com/awwabalimirza/" target="_blank" class="social-btn">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=awwabalimirza56@gmail.com" target="_blank" class="social-btn">
+               <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             </a>
         </div>
     </div>
@@ -530,7 +542,7 @@
         <h2 class="section-title"><i class='bx bx-target-lock'></i> GOALS</h2>
         <p style="font-size: 1.2rem; color: #ccc;">
             > 2025-2029 BECOME A LEADING AI ENGINEER IN THE INDUSTRY.<br><br>
-            > CONTRIBUTE TO  AI RESEARCH AND DEVELOPMENT.<br><br>
+            > CONTRIBUTE TO  AI RESEARCH AND DEVELOPMENT.<br><br>
             > COLLABORATE WITH TOP TECH COMPANIES ON INNOVATIVE PROJECTS.<br><br>
             > CONTINUOUSLY UPGRADE MY SKILLS AND STAY AHEAD IN THE FIELD OF AI/ML.<br><br>
             > BUILD A PORTFOLIO OF SUCCESSFUL AI-DRIVEN APPLICATIONS.
@@ -554,128 +566,128 @@
             <a href="https://www.linkedin.com/in/awwab-ali-mirza-012435352/" target="_blank" class="social-btn">
                 <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
             </a>
-            <a href="https://www.instagram.com/awwabalimirza/" target="_blank" class="social-btn">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=awwabalimirza56@gmail.com" target="_blank" class="social-btn">
+               <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             </a>
         </div>
-    </div>
+    </div>
 
-    <footer>
-        <p>© 2026 Awwab Ali Mirza. All Rights Reserved.</p>
-    </footer>
+    <footer>
+        <p>© 2026 Awwab Ali Mirza. All Rights Reserved.</p>
+    </footer>
 
-    <script>
-        // --- 1. ABOUT ME TYPEWRITER ---
-        const aboutMeText = "I AM AN ASPIRING AI ENGINEER AND COMPUTER SCIENTIST CURRENTLY PURSUING MY BACHELORS AT THE NATIONAL UNIVERSITY OF COMPUTER AND EMERGING SCIENCES.<br>MY JOURNEY INTO TECH IS UNIQUE. I CAME FROM A BACKGROUND WITH ABSOLUTELY ZERO CODING EXPERIENCE. HOWEVER, DIVING INTO C++ COMPLETELY TRANSFORMED MY WORLDVIEW. I WENT FROM BEING A PASSIVE USER OF TECHNOLOGY TO AN ACTIVE CREATOR AND INNOVATOR.";
-        const typeContainer = document.getElementById('typewriter-text');
-        let typeIndex = 0;
+    <script>
+        // --- 1. ABOUT ME TYPEWRITER ---
+        const aboutMeText = "I AM AN ASPIRING AI ENGINEER AND COMPUTER SCIENTIST CURRENTLY PURSUING MY BACHELORS AT THE NATIONAL UNIVERSITY OF COMPUTER AND EMERGING SCIENCES.<br>MY JOURNEY INTO TECH IS UNIQUE. I CAME FROM A BACKGROUND WITH ABSOLUTELY ZERO CODING EXPERIENCE. HOWEVER, DIVING INTO C++ COMPLETELY TRANSFORMED MY WORLDVIEW. I WENT FROM BEING A PASSIVE USER OF TECHNOLOGY TO AN ACTIVE CREATOR AND INNOVATOR.";
+        const typeContainer = document.getElementById('typewriter-text');
+        let typeIndex = 0;
 
-        function typeWriter() {
-            if (typeIndex < aboutMeText.length) {
-                if (aboutMeText.substring(typeIndex, typeIndex + 4) === "<br>") {
-                    typeContainer.innerHTML += "<br>";
-                    typeIndex += 4;
-                } else {
-                    typeContainer.innerHTML += aboutMeText.charAt(typeIndex);
-                    typeIndex++;
-                }
-                setTimeout(typeWriter, 75); // Speed set to 75 as requested earlier
-            }
-        }
+        function typeWriter() {
+            if (typeIndex < aboutMeText.length) {
+                if (aboutMeText.substring(typeIndex, typeIndex + 4) === "<br>") {
+                    typeContainer.innerHTML += "<br>";
+                    typeIndex += 4;
+                } else {
+                    typeContainer.innerHTML += aboutMeText.charAt(typeIndex);
+                    typeIndex++;
+                }
+                setTimeout(typeWriter, 75); // Speed set to 75 as requested earlier
+            }
+        }
 
-        // --- 2. HEADER TEXT SCRAMBLER/TYPER ---
-        const headerTexts = ["BSAI STUDENT", "PROBLEM SOLVER", "FRONT END DEVELOPER"];
-        let headerCount = 0;
-        let headerIndex = 0;
-        let currentHeaderText = "";
-        let headerLetter = "";
-        let isDeleting = false;
+        // --- 2. HEADER TEXT SCRAMBLER/TYPER ---
+        const headerTexts = ["BSAI STUDENT", "PROBLEM SOLVER", "FRONT END DEVELOPER"];
+        let headerCount = 0;
+        let headerIndex = 0;
+        let currentHeaderText = "";
+        let headerLetter = "";
+        let isDeleting = false;
 
-        function headerTypewriter() {
-            if (headerCount === headerTexts.length) {
-                headerCount = 0;
-            }
-            currentHeaderText = headerTexts[headerCount];
+        function headerTypewriter() {
+            if (headerCount === headerTexts.length) {
+                headerCount = 0;
+            }
+            currentHeaderText = headerTexts[headerCount];
 
-            if (isDeleting) {
-                headerLetter = currentHeaderText.slice(0, --headerIndex);
-            } else {
-                headerLetter = currentHeaderText.slice(0, ++headerIndex);
-            }
+            if (isDeleting) {
+                headerLetter = currentHeaderText.slice(0, --headerIndex);
+            } else {
+                headerLetter = currentHeaderText.slice(0, ++headerIndex);
+            }
 
-            document.querySelector('.typing-text').textContent = headerLetter;
+            document.querySelector('.typing-text').textContent = headerLetter;
 
-            let typeSpeed = 100;
-            if (isDeleting) typeSpeed = 50;
+            let typeSpeed = 100;
+            if (isDeleting) typeSpeed = 50;
 
-            if (!isDeleting && headerLetter.length === currentHeaderText.length) {
-                typeSpeed = 2000; 
-                isDeleting = true;
-            } else if (isDeleting && headerLetter.length === 0) {
-                isDeleting = false;
-                headerCount++;
-                typeSpeed = 500;
-            }
+            if (!isDeleting && headerLetter.length === currentHeaderText.length) {
+                typeSpeed = 2000; 
+                isDeleting = true;
+            } else if (isDeleting && headerLetter.length === 0) {
+                isDeleting = false;
+                headerCount++;
+                typeSpeed = 500;
+            }
 
-            setTimeout(headerTypewriter, typeSpeed);
-        }
+            setTimeout(headerTypewriter, typeSpeed);
+        }
 
-        window.onload = function() {
-            typeWriter(); 
-            headerTypewriter(); 
-        };
+        window.onload = function() {
+            typeWriter(); 
+            headerTypewriter(); 
+        };
 
-        // --- 3. SMART NAVBAR LOGIC (UPDATED FOR DYNAMIC HEIGHT) ---
-        let lastScrollTop = 0;
-        const navbar = document.querySelector('nav');
+        // --- 3. SMART NAVBAR LOGIC (UPDATED FOR DYNAMIC HEIGHT) ---
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('nav');
 
-        window.addEventListener('scroll', function() {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            // Fix for Mobile "bounce" scroll
-            if (scrollTop < 0) return;
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Fix for Mobile "bounce" scroll
+            if (scrollTop < 0) return;
 
-            if (scrollTop > lastScrollTop) {
-                // Scroll Down -> Hide Nav (dynamic height)
-                // We use offsetHeight to know exactly how tall the nav is (buttons wrapped)
-                navbar.style.top = `-${navbar.offsetHeight}px`; 
-            } else {
-                // Scroll Up -> Show Nav
-                navbar.style.top = "0";
-            }
-            lastScrollTop = scrollTop;
-        });
+            if (scrollTop > lastScrollTop) {
+                // Scroll Down -> Hide Nav (dynamic height)
+                // We use offsetHeight to know exactly how tall the nav is (buttons wrapped)
+                navbar.style.top = `-${navbar.offsetHeight}px`; 
+            } else {
+                // Scroll Up -> Show Nav
+                navbar.style.top = "0";
+            }
+            lastScrollTop = scrollTop;
+        });
 
-        // --- FORM HANDLING ---
-        var form = document.getElementById("contact-form");
+        // --- FORM HANDLING ---
+        var form = document.getElementById("contact-form");
 
-        async function handleSubmit(event) {
-            event.preventDefault();
-            var data = new FormData(event.target);
-            fetch(event.target.action, {
-                method: form.method,
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    alert("Thanks! Your message has been sent to Awwab.");
-                    form.reset();
-                } else {
-                    response.json().then(data => {
-                        if (Object.hasOwn(data, 'errors')) {
-                            alert(data["errors"].map(error => error["message"]).join(", "));
-                        } else {
-                            alert("Oops! There was a problem submitting your form");
-                        }
-                    })
-                }
-            }).catch(error => {
-                alert("Oops! There was a problem submitting your form");
-            });
-        }
-        form.addEventListener("submit", handleSubmit);
-    </script>
+        async function handleSubmit(event) {
+            event.preventDefault();
+            var data = new FormData(event.target);
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    alert("Thanks! Your message has been sent to Awwab.");
+                    form.reset();
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            alert(data["errors"].map(error => error["message"]).join(", "));
+                        } else {
+                            alert("Oops! There was a problem submitting your form");
+                        }
+                    })
+                }
+            }).catch(error => {
+                alert("Oops! There was a problem submitting your form");
+            });
+        }
+        form.addEventListener("submit", handleSubmit);
+    </script>
 </body>
 </html>
