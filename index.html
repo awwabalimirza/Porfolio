@@ -20,7 +20,7 @@
             --mc-btn-shadow: #3b3b3b;
             --mc-btn-light: #d9d9d9;
             --mc-text-shadow: 2px 2px #000;
-            --mc-green: #5cbd34;
+            --mc-green: #5cbd34; /* The About Me Color */
             --mc-dirt: #3f2713;
             --neon-cyan: #00ffff;
             --mc-yellow: #ffff55;
@@ -98,6 +98,9 @@
             margin-top: 50px;
             margin-bottom: 30px;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .profile-pic {
@@ -134,10 +137,12 @@
             color: #aaaaaa;
             margin-top: 5px;
             min-height: 2.4rem;
+            margin-bottom: 25px; 
         }
 
+        /* UPDATED: Typing text matches mc-green */
         .typing-text {
-            color: var(--mc-yellow);
+            color: var(--mc-green); 
             text-shadow: 2px 2px #000;
         }
         
@@ -150,6 +155,50 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
         }
+
+        /* --- HERO BUTTONS (UPDATED COLORS) --- */
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .hero-btn {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        /* Green Button (Featured Work) - Matches About Me Green */
+        .hero-btn.primary {
+            background-color: var(--mc-green);
+            color: black;
+            border: 2px solid var(--mc-green);
+        }
+        .hero-btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--mc-green);
+        }
+
+        /* Black Button (Collaborate) - Matches About Me Green Border/Text */
+        .hero-btn.secondary {
+            background-color: black;
+            color: var(--mc-green);
+            border: 2px solid var(--mc-green);
+        }
+        .hero-btn.secondary:hover {
+            transform: translateY(-3px);
+            background-color: rgba(92, 189, 52, 0.1);
+            box-shadow: 0 0 20px var(--mc-green);
+        }
+
 
         /* --- NAVIGATION --- */
         nav {
@@ -384,6 +433,11 @@
         <img src="pf.jpeg" alt="Profile" class="profile-pic">
         <h1>AWWAB ALI MIRZA</h1>
         <h2 class="subtitle">I'm a <span class="typing-text"></span><span class="cursor-blink">|</span></h2>
+        
+        <div class="hero-buttons">
+            <a href="#projects" class="hero-btn primary">FEATURED WORK <i class='bx bx-right-arrow-alt'></i></a>
+            <a href="#contact" class="hero-btn secondary">LET'S COLLABORATE <i class='bx bx-paper-plane'></i></a>
+        </div>
     </header>
 
     <nav>
