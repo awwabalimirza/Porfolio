@@ -20,7 +20,7 @@
             --mc-btn-shadow: #3b3b3b;
             --mc-btn-light: #d9d9d9;
             --mc-text-shadow: 2px 2px #000;
-            --mc-green: #5cbd34; /* Main Theme Color */
+            --mc-green: #5cbd34;
             --mc-dirt: #3f2713;
             --neon-cyan: #00ffff;
             --mc-yellow: #ffff55;
@@ -234,7 +234,7 @@
             overflow: hidden; 
             scroll-margin-top: 130px; 
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-            border-radius: 20px; /* Rounded Edges */
+            border-radius: 20px;
         }
 
         .container:hover {
@@ -317,31 +317,56 @@
         .card-title { color: var(--neon-cyan); font-size: 1.5rem; margin: 0 0 10px 0; }
         .card-desc { color: #e0e0e0; font-size: 1rem; line-height: 1.4; margin-bottom: 20px; flex-grow: 1; }
         
-        /* ACCESS BUTTONS (Hover Reverse) */
+        /* ACCESS BUTTONS */
         .access-btn { 
             display: block; width: 100%; padding: 12px; text-align: center; border: 2px solid var(--neon-cyan); color: var(--neon-cyan); text-decoration: none; border-radius: 8px; font-size: 1.1rem; background: transparent; transition: all 0.2s; 
         }
         .access-btn:hover { background-color: var(--neon-cyan); color: #000000; box-shadow: 0 0 15px var(--neon-cyan); }
 
-        /* --- FORM & SOCIAL --- */
+        /* --- FORM --- */
         .mc-input { width: 100%; background: rgba(0, 0, 0, 0.5); border: 2px solid #555; color: white; padding: 15px; font-size: 1.2rem; font-family: 'Minecraft', monospace; outline: none; margin-bottom: 15px; transition: border-color 0.2s; }
         .mc-input:focus { border-color: #5cbd34; }
-        .social-links { display: flex; gap: 20px; justify-content: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
-        .social-btn { width: 50px; height: 50px; border: 2px solid #5cbd34; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); transition: all 0.3s ease; }
+
+        /* --- SOCIAL LINKS (OPTIMIZED) --- */
+        .social-links { 
+            display: flex; 
+            gap: 20px; 
+            justify-content: center; 
+            margin-top: 20px; 
+            padding-top: 15px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+        .social-btn { 
+            width: 50px; 
+            height: 50px; 
+            border: 2px solid #5cbd34; 
+            border-radius: 12px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            background: rgba(0,0,0,0.5); 
+            transition: all 0.3s ease; 
+        }
         .social-btn svg { width: 28px; height: 28px; fill: #ffff55; transition: all 0.3s ease; }
-        .social-btn:hover { background-color: #5cbd34; box-shadow: 0 0 15px #5cbd34; transform: scale(1.1); }
+        
+        /* Social Hover Effects */
+        .social-btn:hover { background-color: #5cbd34; box-shadow: 0 0 15px #5cbd34; transform: translateY(-5px) scale(1.1); }
         .social-btn:hover svg { fill: white; }
+
         footer { margin-bottom: 20px; color: #ccc; font-size: 1rem; text-shadow: 1px 1px 2px black; }
 
-        /* --- MOBILE OPTIMIZATION --- */
+        /* --- MOBILE OPTIMIZATIONS (MEDIA QUERIES) --- */
         @media screen and (max-width: 768px) {
-            /* 1. Nav BG Full Width Alignment */
+            /* 1. Body Padding removed so Nav stretches */
             body { padding: 0; }
             .container { width: 90%; margin: 0 auto 30px auto; padding: 15px; }
 
             /* 2. Header Adjustments */
             header { padding: 0 15px; margin-top: 30px; }
-            h1 { font-size: 1.8rem; white-space: nowrap; } /* Force one line */
+            
+            /* CLAMP FONT SIZE: Fits name on one line dynamically */
+            h1 { font-size: clamp(1.8rem, 5vw, 3rem); white-space: nowrap; } 
+            
             h2.subtitle { font-size: 1.1rem; min-height: auto; margin-bottom: 20px; }
             .profile-pic { width: 150px; height: 150px; }
 
@@ -371,8 +396,11 @@
             }
             .full-width .edu-logo { height: 80px; right: 50%; transform: translate(50%, -50%); }
 
-            .skill-item { font-size: 1rem; flex-direction: column; align-items: flex-start; gap: 5px; }
-            .skill-item span:last-child { align-self: flex-end; }
+            /* Social Logos Adjustment */
+            .social-links { gap: 20px; padding-bottom: 25px; }
+            .social-btn { width: 48px; height: 48px; }
+            
+            footer { font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -512,7 +540,7 @@
             </a>
             <a href="https://www.instagram.com/awwabalimirza/" target="_blank" class="social-btn">
                 <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
+            </a>
         </div>
     </div>
 
