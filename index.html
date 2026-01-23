@@ -113,7 +113,7 @@
             text-transform: uppercase;
         }
         
-        /* --- FEATURED WORK BUTTON (Solid Cyan Default) --- */
+        /* --- BUTTON STYLE: SOLID CYAN DEFAULT (Like Image) --- */
         .hero-btn.primary {
             background-color: var(--main-cyan); 
             color: #050505; 
@@ -136,7 +136,7 @@
             box-shadow: 0 0 30px #fff; transform: translateY(-3px);
         }
         
-        /* --- DYNAMIC NAVIGATION BAR (Fills Edges) --- */
+        /* --- DYNAMIC NAVIGATION BAR (Responsive & Filling) --- */
         nav {
             display: flex; 
             gap: 10px; 
@@ -167,9 +167,8 @@
             color: #ccc; text-decoration: none; font-size: 1rem;
             text-align: center; transition: all 0.3s; 
             
-            /* Flex Grow Logic: Buttons fill space */
             flex: 1 1 auto; 
-            min-width: 120px; /* Minimum width for desktop */
+            min-width: 120px; 
             
             height: 45px;
             padding: 0 10px; 
@@ -356,19 +355,20 @@
         /* --- MOBILE VIEW OPTIMIZATIONS --- */
         @media screen and (max-width: 768px) {
             
-            /* 1. Name: Sized to 6.5vw to ensure it stays on one line */
+            /* 1. Name: Perfectly sized to ~7.2vw to fill width without overflowing */
             h1 { 
-                font-size: 6.5vw; 
+                font-size: 7.2vw; 
                 white-space: nowrap; 
                 width: 100%;
                 text-align: center;
+                letter-spacing: 1px; /* Reduced spacing to help it fit */
             }
 
             .container { width: 95%; padding: 20px; }
             .hero-buttons { flex-direction: column; width: 100%; }
             .hero-btn { width: 100%; }
 
-            /* 2. Navbar: Filled Edges & Auto-Sizing */
+            /* 2. Navbar: Fill Edges & Auto-Sizing */
             nav { 
                 width: 100%;
                 padding: 10px 5px; 
