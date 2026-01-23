@@ -98,7 +98,7 @@
                 }
             }).then(response => {
                 if (response.ok) {
-                    alert("Thanks! Your message has been sent to Awwab.");
+                    alert("Thanks! Your message has been sent to Awwab. You will get a response within 24 hours.");
                     form.reset();
                 } else {
                     response.json().then(data => {

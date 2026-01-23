@@ -388,7 +388,6 @@
             .game-card { width: 100%; }
             .edu-row { flex-direction: column; }
             
-            /* 3. Skills: Fixed one line */
             .skill-item { 
                 flex-direction: row; 
                 white-space: nowrap;
