@@ -86,6 +86,32 @@ function setNavHeightVar() {
   }
 }
 
+const navToggle = document.querySelector(".nav-toggle");
+const navLinks = document.getElementById("primary-navigation");
+
+function closeMobileNav() {
+  if (!navToggle || !navLinks) return;
+  navToggle.classList.remove("is-open");
+  navLinks.classList.remove("is-open");
+  navToggle.setAttribute("aria-expanded", "false");
+  navToggle.setAttribute("aria-label", "Open navigation menu");
+  setNavHeightVar();
+}
+
+if (navToggle && navLinks) {
+  navToggle.addEventListener("click", () => {
+    const isOpen = navToggle.classList.toggle("is-open");
+    navLinks.classList.toggle("is-open", isOpen);
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+    navToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+    setNavHeightVar();
+  });
+
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMobileNav);
+  });
+}
+
 window.onload = function () {
   typeWriter();
   headerTypewriter();
