@@ -1,20 +1,13 @@
 const aboutMeText =
-  "I AM AN ASPIRING AI ENGINEER AND COMPUTER SCIENTIST CURRENTLY PURSUING MY BACHELORS AT THE NATIONAL UNIVERSITY OF COMPUTER AND EMERGING SCIENCES.<br>MY JOURNEY INTO TECH IS UNIQUE. I CAME FROM A BACKGROUND WITH ABSOLUTELY ZERO CODING EXPERIENCE. HOWEVER, DIVING INTO C++ COMPLETELY TRANSFORMED MY WORLDVIEW. I WENT FROM BEING A PASSIVE USER OF TECHNOLOGY TO AN ACTIVE CREATOR AND INNOVATOR.";
+  "Artificial Intelligence undergraduate at FAST NUCES Islamabad with interests in Web Development and AI applications. <br> Passionate about building practical solutions for businesses through technology. Currently developing skills in C++, HTML, CSS and AI systems."
 const typeContainer = document.getElementById("typewriter-text");
-let typeIndex = 0;
+
+// Render the about text immediately — no slow typewriter delay.
 function typeWriter() {
-  if (typeIndex < aboutMeText.length) {
-    if (aboutMeText.substring(typeIndex, typeIndex + 4) === "<br>") {
-      typeContainer.innerHTML += "<br>";
-      typeIndex += 4;
-    } else {
-      typeContainer.innerHTML += aboutMeText.charAt(typeIndex);
-      typeIndex++;
-    }
-    setTimeout(typeWriter, 75);
-  }
+  typeContainer.innerHTML = aboutMeText;
 }
-const headerTexts = ["BSAI STUDENT", "PROBLEM SOLVER", "FRONT END DEVELOPER"];
+
+const headerTexts = ["BSAI STUDENT", "C++ DEVELOPER", "PROBLEM SOLVER"];
 let headerCount = 0;
 let headerIndex = 0;
 let currentHeaderText = "";
@@ -43,31 +36,52 @@ function headerTypewriter() {
   }
   setTimeout(headerTypewriter, typeSpeed);
 }
-// LAZY LOAD BACKGROUND VIDEO
-function lazyLoadVideo() {
-  const video = document.getElementById("bg-video");
-  const source = video.querySelector("source[data-src]");
-  if (source) {
-    source.src = source.getAttribute("data-src");
-    source.removeAttribute("data-src");
-    video.load();
-    video.play().catch(function () {
-      // Autoplay blocked — retry on user interaction
-      document.addEventListener(
-        "click",
-        function retryPlay() {
-          video.play();
-          document.removeEventListener("click", retryPlay);
-        },
-        { once: true },
-      );
-    });
-    video.addEventListener(
-      "playing",
-      function () {
-        document.body.classList.add("video-loaded");
-      },
-      { once: true },
+
+// ============================
+// STARLIGHT HEADLINER BACKGROUND
+// Builds the twinkling star layers once (and again on resize),
+// replacing the old background video. Cheap: a single box-shadow
+// list per layer, animated purely with CSS opacity.
+// ============================
+function randomStarShadow(count) {
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  const shadows = [];
+  for (let i = 0; i < count; i++) {
+    const x = Math.floor(Math.random() * w);
+    const y = Math.floor(Math.random() * h);
+    const alpha = (Math.random() * 0.6 + 0.4).toFixed(2);
+    shadows.push(`${x}px ${y}px rgba(255,255,255,${alpha})`);
+  }
+  return shadows.join(",");
+}
+
+function generateStarfield() {
+  const small = document.getElementById("stars-small");
+  const medium = document.getElementById("stars-medium");
+  const bright = document.getElementById("stars-bright");
+  if (!small || !medium || !bright) return;
+  small.style.boxShadow = randomStarShadow(160);
+  medium.style.boxShadow = randomStarShadow(70);
+  bright.style.boxShadow = randomStarShadow(22);
+}
+
+function debounce(fn, wait) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), wait);
+  };
+}
+
+// Keep body padding in sync with the fixed nav's real height
+// (it can wrap to two rows on small screens).
+function setNavHeightVar() {
+  const nav = document.getElementById("site-nav");
+  if (nav) {
+    document.documentElement.style.setProperty(
+      "--nav-height",
+      nav.offsetHeight + "px",
     );
   }
 }
@@ -75,31 +89,42 @@ function lazyLoadVideo() {
 window.onload = function () {
   typeWriter();
   headerTypewriter();
-  // Load the video after everything else is ready
-  setTimeout(lazyLoadVideo, 200);
+  setNavHeightVar();
+  generateStarfield();
 };
-let lastScrollTop = 0;
-const navbar = document.querySelector("nav");
-window.addEventListener("scroll", function () {
-  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-  //DYNAMIC NAVBAR LOGIC
-  if (scrollTop > 50) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
+window.addEventListener(
+  "resize",
+  debounce(function () {
+    setNavHeightVar();
+    generateStarfield();
+  }, 250),
+);
 
-  if (scrollTop < 0) return;
-  if (scrollTop > lastScrollTop) {
-    navbar.style.top = `-${navbar.offsetHeight}px`;
-  } else {
-    navbar.style.top = "0";
-  }
-  lastScrollTop = scrollTop;
-});
+// Subtle "scrolled" state on the nav (deeper background + shadow),
+// throttled with requestAnimationFrame so it never runs more than
+// once per frame no matter how fast the scroll events fire.
+const siteNav = document.getElementById("site-nav");
+let scrollTicking = false;
+window.addEventListener(
+  "scroll",
+  function () {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(function () {
+        if (window.pageYOffset > 30) {
+          siteNav.classList.add("scrolled");
+        } else {
+          siteNav.classList.remove("scrolled");
+        }
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  },
+  { passive: true },
+);
 
-//SCROLL ANIMATION OBSERVER
+// SCROLL ANIMATION OBSERVER
 const observerOptions = {
   root: null,
   rootMargin: "0px",
