@@ -1447,9 +1447,9 @@ footer {
     gap: 28px;
   }
   .about-facts {
-    border-top: 1px solid rgba(0, 243, 255, 0.25);
-    border-left: 0;
-    padding: 6px 0 0;
+    border-top: 0;
+    border-left: 2px solid var(--main-cyan);
+    padding: 6px 0 6px 20px;
   }
   .about-facts div {
     flex-direction: row;
