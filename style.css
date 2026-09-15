@@ -799,6 +799,9 @@ h2.section-title i {
   gap: 32px;
   margin-bottom: 28px;
 }
+.projects-heading > div {
+  flex: 1;
+}
 .projects-heading .section-title { margin-bottom: 0; }
 .section-kicker {
   color: var(--main-cyan);
